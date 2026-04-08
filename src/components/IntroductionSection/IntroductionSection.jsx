@@ -2,8 +2,8 @@ import React from "react";
 import "./introduction.css";
 import { Link } from "react-router-dom";
 
-import About01 from "../../assets/about-us.png"
-import About02 from "../../assets/about-us-01.png"
+import About01 from "../../assets/about-us-1.png"
+import About02 from "../../assets/about-us-2.png"
 
 const stats = [
   { value: "10+", label: "Years Experience" },
