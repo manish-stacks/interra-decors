@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import About01 from "../../assets/about-us.png"
 import About02 from "../../assets/about-us-01.png"
 
-
 const stats = [
   { value: "10+", label: "Years Experience" },
   { value: "500+", label: "Projects Delivered" },
