@@ -591,12 +591,12 @@ const AllProductsSection = ({ category = "All" }) => {
                     </h3>
                     <StarRating rating={p.rating} />
                     <div className="aps-price-row">
-                      <span className="aps-price">
+                      {/* <span className="aps-price">
                         ₹{p.discount.toLocaleString("en-IN")}
                       </span>
                       <span className="aps-old-price">
                         ₹{p.price.toLocaleString("en-IN")}
-                      </span>
+                      </span> */}
                       <span
                         className={`aps-stock-badge ${p.inStock ? "in-stock" : "out-stock"
                           }`}

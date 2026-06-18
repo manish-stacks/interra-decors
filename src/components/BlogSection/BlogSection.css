@@ -154,7 +154,7 @@
 /* ── DARK TOP ── */
 .blog-card-top {
   position: relative;
-  height: 170px;
+  height: 270px;
   background: #0f0e0c;
   overflow: hidden;
   flex-shrink: 0;

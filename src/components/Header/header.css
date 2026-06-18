@@ -22,7 +22,7 @@
 /* ── Top Bar ── */
 .dh-topbar {
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    border-bottom: 1px solid rgb(187 187 187 / 63%);
 }
 
 .dh-topbar-inner {
@@ -137,7 +137,7 @@
 /* ── Primary Nav ── */
 .dh-primary {
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgb(187 187 187 / 63%);
 }
 
 .dh-primary-inner {
@@ -204,7 +204,7 @@
 /* ── Sub Nav ── */
 .dh-subnav {
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgb(187 187 187 / 63%);
 }
 
 .dh-subnav-inner {
@@ -276,7 +276,75 @@
 .dh-hamburger.open span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
+/* Sticky Wrapper Desktop */
+.dh-sticky-wrapper.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(16px);
+    animation: slideDown .3s ease;
+}
 
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Sticky */
+@media (max-width: 991px) {
+
+    .dh-header.sticky .dh-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 99999;
+        background: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(16px);
+    }
+
+    .dh-mobile-menu {
+        display: block;
+        position: fixed;
+        top: 54px; 
+        left: 0;
+        width: 100%;
+        z-index: 99998;
+        max-height: 0;
+        overflow-y: auto;
+        opacity: 0;
+        background: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(16px);
+        transition: max-height .3s ease,
+                    opacity .3s ease;
+    }
+
+    .dh-mobile-menu.open {
+        max-height: calc(100vh - 80px);
+        opacity: 1;
+    }
+
+    .dh-mobile-menu.sticky {
+        top: 54px;
+    }
+}
+
+/* Body spacing when sticky */
+body {
+    padding-top: 0;
+}
+
+.dh-header.sticky {
+    padding-top: 80px;
+}
 /* ── Mobile Drawer ── */
 .dh-mobile-menu {
     display: none;
@@ -394,9 +462,9 @@
 }
 
 .dh-logo-img {
-    height: clamp(45px, 5vw, 70px);
+    height: clamp(45px, 5vw, 90px);
     width: auto;
-    padding: 8px 0;
+    /* padding: 8px 0; */
 }
 
 /* ════════════════════════════════════════════

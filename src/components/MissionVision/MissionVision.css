@@ -33,7 +33,7 @@ body {
 
 /* --- OVERALL CANVAS CONTAINER --- */
 .spatial-showroom {
-  width: 1280px;
+  max-width: 1280px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -149,7 +149,62 @@ body {
   margin: 0 auto;
   padding: 0 40px;
 }
+.matrix-thumb {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
 
+.matrix-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.matrix-cell:hover .matrix-thumb img {
+  transform: scale(1.05);
+}
+
+/* Large screens */
+@media (max-width: 1400px) {
+  .matrix-thumb {
+    height: 160px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  .matrix-thumb {
+    height: 220px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .matrix-thumb {
+    height: 152px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  /* .matrix-thumb {
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  } */
+
+  .matrix-cell:hover .matrix-thumb img {
+    transform: none; /* disable zoom on touch devices */
+  }
+}
 .matrix-header {
   margin-bottom: 35px;
 }
@@ -259,7 +314,8 @@ body {
     min-height: 50vh;
   }
   .matrix-grid {
-    grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
   }
   .matrix-cell {
     border-right: none !important;

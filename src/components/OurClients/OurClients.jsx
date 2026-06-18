@@ -2,14 +2,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./OurClients.css";
 
-import Client01 from "../../assets/products-cat/carpets.webp";
-import Client02 from "../../assets/products-cat/wooden-flooring.webp";
-import Client03 from "../../assets/products-cat/wall-to-wall-carpet.webp";
+import Client01 from "../../assets/products-cat/interior-designers.jpg";
+import Client02 from "../../assets/products-cat/architects.jpg";
+import Client03 from "../../assets/products-cat/hotels.jpg";
+import Client04 from "../../assets/products-cat/corporates.jpg";
+import Client05 from "../../assets/products-cat/builders.jpg";
+import Client06 from "../../assets/products-cat/builders.jpg";
 
 const slides = [
-  { src: Client01, alt: "Artisan Carpets", label: "Artisan Carpets" },
-  { src: Client02, alt: "Wooden Flooring", label: "Wooden Flooring" },
-  { src: Client03, alt: "Bespoke Textiles", label: "Bespoke Textiles" },
+  { src: Client01, alt: "Interior Designers", label: "Interior Designers" },
+  { src: Client02, alt: "Architects", label: "Architects" },
+  { src: Client03, alt: "Hotels", label: "Hotels" },
+  { src: Client04, alt: "Corporates", label: "Corporates" },
+  { src: Client05, alt: "Builders", label: "Builders" },
+  { src: Client06, alt: "Builders", label: "Homeowners" },
 ];
 
 const categories = ["Carpets", "Flooring", "Textiles"];

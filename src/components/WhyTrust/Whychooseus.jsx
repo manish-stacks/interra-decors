@@ -1,220 +1,201 @@
-import { useState } from "react";
-import "./WhyTrust.css";
+import React, { useEffect, useRef } from "react";
+import "./Whychooseus.css";
+import img1 from "../../assets/why-choose/01.jpg";
+import img2 from "../../assets/why-choose/02.jpg";
+import img3 from "../../assets/why-choose/03.jpg";
+import img4 from "../../assets/why-choose/04.jpg";
+import img5 from "../../assets/why-choose/05.jpg";
+import img6 from "../../assets/why-choose/06.jpg";
 
-const reasons = [
+/* -------------------------------------------------------------------- */
+/*  Icons — simple single-weight line icons, drawn to match the brand's */
+/*  existing icon language (star / home / network / tag / people /     */
+/*  clock). Swap these for your own icon set if you have one.           */
+/* -------------------------------------------------------------------- */
+const Icon = {
+  star: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <path
+        d="M12 3.5l2.47 5.27 5.78.62-4.36 3.93 1.27 5.68L12 16.1l-5.16 2.9 1.27-5.68-4.36-3.93 5.78-.62L12 3.5z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  home: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <path d="M4 11.2 12 4l8 7.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6 9.8V20h12V9.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 20v-6h4v6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+  network: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <circle cx="5" cy="6" r="2.2" />
+      <circle cx="5" cy="18" r="2.2" />
+      <circle cx="18" cy="12" r="2.2" />
+      <path d="M7 6.9 16 11M7 17.1 16 13" strokeLinecap="round" />
+    </svg>
+  ),
+  tag: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5v9M9.3 9.3c0-1.3 1.2-2 2.7-2s2.7.8 2.7 2-1.2 1.7-2.7 2-2.7.7-2.7 2 1.2 2 2.7 2 2.7-.7 2.7-2" strokeLinecap="round" />
+    </svg>
+  ),
+  people: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <circle cx="8.5" cy="8" r="2.6" />
+      <circle cx="16" cy="9" r="2.1" />
+      <path d="M3.5 19c0-3 2.3-5 5-5s5 2 5 5" strokeLinecap="round" />
+      <path d="M14 14.3c2.1.2 3.7 1.9 3.7 4.2" strokeLinecap="round" />
+    </svg>
+  ),
+  clock: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3.2 2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+};
+
+/* -------------------------------------------------------------------- */
+/*  Default content — replace the `image` paths with your own product   */
+/*  / lifestyle photography. Placeholders below are deterministic stock */
+/*  images so the layout previews correctly out of the box.             */
+/* -------------------------------------------------------------------- */
+const defaultFeatures = [
   {
-    id: "01",
+    icon: "star",
     title: "Premium Quality Products",
-    desc: "Only the finest materials and finishes, curated for lasting elegance.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M18 4L21.5 13H31L23.5 18.5L26.5 28L18 22.5L9.5 28L12.5 18.5L5 13H14.5L18 4Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    description:
+      "Interra Decors curates premium furnishings, décor, and interior solutions crafted from superior materials and refined finishes. Every product is selected to deliver lasting beauty, durability, and sophistication, ensuring your spaces reflect elegance while meeting everyday functional needs.",
+    image: img1,
+    alt: "Premium finish detail on a furniture piece",
   },
   {
-    id: "02",
+    icon: "home",
     title: "Wide Range Under One Roof",
-    desc: "Every furnishing need met in one place — flooring to furniture.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M5 14L18 5L31 14V30H22V22H14V30H5V14Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <rect
-          x="14"
-          y="22"
-          width="8"
-          height="8"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-      </svg>
-    ),
+    description:
+      "From luxurious curtains and wallpapers to flooring, rugs, and custom furnishings, Interra Decors offers comprehensive interior solutions. Our diverse product portfolio allows homeowners and designers to create cohesive, stylish, and functional spaces with ease.",
+    image: img2,
+    alt: "Showroom displaying a wide range of furnishings",
   },
   {
-    id: "03",
+    icon: "network",
     title: "Strong Vendor Network",
-    desc: "Backed by trusted suppliers ensuring consistent quality and supply.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="18" cy="18" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="6" cy="10" r="3" stroke="currentColor" strokeWidth="1.3" />
-        <circle cx="30" cy="10" r="3" stroke="currentColor" strokeWidth="1.3" />
-        <circle cx="6" cy="26" r="3" stroke="currentColor" strokeWidth="1.3" />
-        <circle cx="30" cy="26" r="3" stroke="currentColor" strokeWidth="1.3" />
-        <line
-          x1="9"
-          y1="11"
-          x2="14"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="27"
-          y1="11"
-          x2="22"
-          y2="15"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="9"
-          y1="25"
-          x2="14"
-          y2="21"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="27"
-          y1="25"
-          x2="22"
-          y2="21"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    description:
+      "Backed by an extensive network of trusted suppliers and premium brands, Interra Decors ensures consistent quality, innovative designs, and reliable availability. This strong ecosystem enables us to deliver exceptional interior solutions for every project.",
+    image: img3,
+    alt: "Warehouse representing a strong supplier network",
   },
   {
-    id: "04",
+    icon: "tag",
     title: "Competitive Pricing",
-    desc: "Premium quality delivered at prices that make business sense.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="18"
-          cy="18"
-          r="13"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M18 8v2M18 26v2M13 13.5c0-1.9 2.2-3 5-3s5 1.1 5 3-2.2 3-5 3-5 1.1-5 3 2.2 3 5 3 5-1.1 5-3"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    description:
+      "We believe exceptional design should offer value alongside luxury. Interra Decors combines premium products with competitive pricing, enabling clients to achieve elegant and functional interiors that align perfectly with their style and budget.",
+    image: img4,
+    alt: "Interior styled to represent value and quality",
   },
   {
-    id: "05",
+    icon: "people",
     title: "Professional Team Support",
-    desc: "Expert guidance from selection through to final installation.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="11" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="24" cy="11" r="4" stroke="currentColor" strokeWidth="1.5" />
-        <path
-          d="M4 28c0-5 3.6-8 8-8s8 3 8 8"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M24 20c4.4 0 8 3 8 8"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    description:
+      "Our experienced team provides expert guidance at every stage, from concept and material selection to execution and installation. We collaborate closely with clients to create thoughtfully designed spaces that balance aesthetics and practicality.",
+    image: img5,
+    alt: "Design team consulting on a project",
   },
   {
-    id: "06",
+    icon: "clock",
     title: "Timely Delivery",
-    desc: "On-schedule execution so your projects never face delays.",
-    icon: (
-      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="18"
-          cy="20"
-          r="12"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M18 14v6l4 3"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M13 5h10M18 5v3"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    description:
+      "Interra Decors is committed to delivering projects on schedule without compromising quality. Through efficient planning, expert coordination, and reliable partnerships, we ensure seamless execution and timely completion for every interior transformation.",
+    image: img6,
+    alt: "Delivery and installation in progress on site",
   },
 ];
+/* -------------------------------------------------------------------- */
+/*  A single zig-zag row. Handles its own scroll-reveal animation.      */
+/* -------------------------------------------------------------------- */
+function FeatureRow({ feature, reversed }) {
+  const rowRef = useRef(null);
 
-export default function WhyChooseUs() {
-  const [hovered, setHovered] = useState(null);
+  useEffect(() => {
+    const el = rowRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("wcu-row--visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="wt-root">
-      <div className="wt-bg-lines" aria-hidden="true">
-        <div className="wt-line wt-line-1" />
-        <div className="wt-line wt-line-2" />
-        <div className="wt-line wt-line-3" />
+    <div
+      ref={rowRef}
+      className={`wcu-row${reversed ? " wcu-row--reversed" : ""}`}
+    >
+      <div className="wcu-row__media">
+        <div className="wcu-row__frame">
+          <img
+            className="wcu-row__image"
+            src={feature.image}
+            alt={feature.alt || feature.title}
+            loading="lazy"
+          />
+        </div>
+        <div className="wcu-row__chip" aria-hidden="true">
+          {Icon[feature.icon] || Icon.star}
+        </div>
       </div>
 
-      <div className="wt-container">
-        {/* ── WHY CHOOSE US ── */}
-        <div className="wt-top">
-          {/* Left: heading */}
-          <div className="wt-top-left">
-            <span className="wt-eyebrow">Why Choose Us</span>
-            <h2 className="wt-heading">
-              Why <em>Interra</em>
-              <br />
-              Decors
-            </h2>
-            <p className="wt-sub">
-              We combine craftsmanship, expertise, and a deep commitment to
-              excellence — delivering spaces that speak for themselves.
-            </p>
-            <div className="wt-accent-bar" />
-          </div>
+      <div className="wcu-row__content">
+        <span className="wcu-row__rule" aria-hidden="true" />
+        <h3 className="wcu-row__title">{feature.title}</h3>
+        <p className="wcu-row__description">{feature.description}</p>
+      </div>
+    </div>
+  );
+}
 
-          {/* Right: 3+3 grid */}
-          <div className="wt-reasons-grid">
-            {reasons.map((r) => (
-              <div
-                key={r.id}
-                className={`wt-reason${hovered === r.id ? " active" : ""}`}
-                onMouseEnter={() => setHovered(r.id)}
-                onMouseLeave={() => setHovered(null)}
-              >
-                <div className="wt-reason-icon">{r.icon}</div>
-                <div className="wt-reason-body">
-                  <h3 className="wt-reason-title">{r.title}</h3>
-                  <p className="wt-reason-desc">{r.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+/* -------------------------------------------------------------------- */
+/*  Section export                                                       */
+/* -------------------------------------------------------------------- */
+export default function WhyChooseUs({
+  eyebrow = "Why Choose Us",
+  introText = "We combine craftsmanship, expertise, and a deep commitment to excellence — delivering spaces that speak for themselves.",
+  features = defaultFeatures,
+}) {
+  return (
+    <section className="wcu">
+      <div className="wcu__intro">
+        <span className="wcu__eyebrow">
+          <span className="wcu__eyebrow-dash" aria-hidden="true" />
+          {eyebrow}
+        </span>
+        <h2 className="wcu__heading">
+          Why <span className="wcu__highlight">Interra </span>
+          Decors
+        </h2>
+        <p className="wcu__intro-text">{introText}</p>
+      </div>
 
-        
+      <div className="wcu__rows">
+        {features.map((feature, i) => (
+          <FeatureRow
+            key={feature.title}
+            feature={feature}
+            reversed={i % 2 === 1}
+          />
+        ))}
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
-import { useState } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
-import logo from "../../assets/new-logo.png";
+import logo from "../../assets/logo.png";
+import { useState, useEffect } from "react";
 
 // ─── ICONS ───────────────────────────────────────────────────────────────────
 
@@ -114,7 +114,7 @@ const subNav = [
   {
     title: "Wall-to-Wall Carpets",
     href: "/all-products?category=wall-to-wall-carpets",
-  }
+  },
 ];
 
 // ─── COMPONENT ────────────────────────────────────────────────────────────────
@@ -122,15 +122,27 @@ const subNav = [
 export default function DecorHeader() {
   const [activeNav, setActiveNav] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   const handleNavClick = (item) => {
     setActiveNav(item);
     setMenuOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="dh-root">
-      <header className="dh-header">
+      <header className={`dh-header ${isSticky ? "sticky" : ""}`}>
         <div className="dh-topbar">
           <div className="dh-topbar-inner">
             <div className="dh-logo">
@@ -179,44 +191,48 @@ export default function DecorHeader() {
             </div>
           </div>
         </div>
+        <div className={`dh-sticky-wrapper ${isSticky ? "sticky" : ""}`}>
+          {/* ── Primary Nav (desktop) ── */}
+          <div className="dh-primary">
+            <div className="dh-primary-inner">
+              <ul className="dh-nav-list">
+                {primaryNav.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item.href}
+                      className={activeNav === item ? "dh-active" : ""}
+                      onClick={(e) => {
+                        setActiveNav(item);
+                      }}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <button className="dh-search-btn">
+                <SearchIcon /> Search
+              </button>
+            </div>
+          </div>
 
-        {/* ── Primary Nav (desktop) ── */}
-        <div className="dh-primary">
-          <div className="dh-primary-inner">
-            <ul className="dh-nav-list">
-              {primaryNav.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item.href}
-                    className={activeNav === item ? "dh-active" : ""}
-                    onClick={(e) => {
-                      setActiveNav(item);
-                    }}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
+          {/* ── Sub Nav (desktop) ── */}
+          <div className="dh-subnav">
+            <div className="dh-subnav-inner">
+              {subNav.map((item, index) => (
+                <Link key={index} to={item.href} className="dh-sub-link">
+                  {item.title}
+                </Link>
               ))}
-            </ul>
-            <button className="dh-search-btn">
-              <SearchIcon /> Search
-            </button>
+            </div>
           </div>
         </div>
-
-        {/* ── Sub Nav (desktop) ── */}
-        <div className="dh-subnav">
-          <div className="dh-subnav-inner">
-            {subNav.map((item, index) => (
-              <Link key={index} to={item.href} className="dh-sub-link">
-                {item.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-
         {/* ── Mobile Drawer ── */}
-        <div className={`dh-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <div
+          className={`dh-mobile-menu ${
+            menuOpen ? "open" : ""
+          } ${isSticky ? "sticky" : ""}`}
+        >
           {/* Primary nav links */}
           <nav className="dh-mobile-nav">
             {primaryNav.map((item, index) => (
@@ -224,10 +240,7 @@ export default function DecorHeader() {
                 key={index}
                 to={item.href}
                 className={activeNav === item ? "dh-active" : ""}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item);
-                }}
+                onClick={() => handleNavClick(item)}
               >
                 {item.title}
               </Link>
@@ -237,9 +250,13 @@ export default function DecorHeader() {
           {/* Sub nav as pills */}
           <div className="dh-mobile-sub">
             {subNav.map((item, index) => (
-              <a key={index} href={item.href} onClick={(e) => e.preventDefault()}>
+              <Link
+                key={index}
+                to={item.href}
+                onClick={() => setMenuOpen(false)}
+              >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </div>
 

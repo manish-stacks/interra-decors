@@ -4,10 +4,10 @@
    ROOT
 =========================== */
 .cta-root {
-  background: #0f0e0c;
+  background: #1f1a10;
   position: relative;
   overflow: hidden;
-  padding: 100px 0;
+  padding: 20px 0 0;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -81,7 +81,7 @@
   color: rgb(245, 240, 232);
   line-height: 1.8;
   margin: 0 0 44px;
-  max-width: 380px;
+  max-width: 500px;
 }
 
 /* ===========================
@@ -540,7 +540,7 @@
 }
 @media (max-width: 768px) {
   .cta-container { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
-  .cta-root { padding: 72px 0; }
+  .cta-root { padding: 72px 0 0; }
 }
 @media (max-width: 480px) {
   .cta-buttons { flex-direction: column; align-items: stretch; }

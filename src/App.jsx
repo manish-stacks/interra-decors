@@ -16,6 +16,7 @@ import Meeting from "./page/Meeting/Meeting";
 import Team from "./page/OurTeam/OurTeam";
 import WorkProcess from "./page/WorkProcess/WorkProcessPage";
 import CareersPage from "./page/CareersPage/CareersPage";
+import Faqs from "./page/Faqs/Faqs";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/book-a-meeting" element={<Meeting />} />
           <Route path="/our-team" element={<Team/>} />
           <Route path="/career" element={<CareersPage/>} />
+          <Route path="/Faqs" element={<Faqs/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

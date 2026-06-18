@@ -2,141 +2,115 @@ import React from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import TrustSection from "../../components/WhyTrust/Trustsection";
 
-import "./WorkProcessPageSection.css";
-import { Link } from "react-router-dom";
-import consultancyImg from "../../assets/banner/why-consultancy.jpg";
+import "./WorkProcessPage.css";
+
+import img1 from "../../assets/work-process/01.jpg";
+import img2 from "../../assets/work-process/02.jpg";
+import img3 from "../../assets/work-process/03.jpg";
+import img4 from "../../assets/work-process/04.jpg";
+import img5 from "../../assets/work-process/01.jpg";
+
+const steps = [
+  {
+    number: "01",
+    label: "Step 1",
+    title: "Product Selection",
+    description:
+      "Browse through our digital product library to select design-appropriate products for your space. Our physical products can be experienced at our studios across various locations.",
+    image: img1,
+    alt: "Designer reviewing floor plans and fabric swatches",
+  },
+  {
+    number: "02",
+    label: "Step 2",
+    title: "Site Visit",
+    description:
+      "Our project managers and designers visit the site for measurements and technical evaluation. Details like pelmet and cove sizes, electric points for motorisation, sunlight direction, and overall aesthetics are taken into account before product selection.",
+    image: img2,
+    alt: "Empty apartment interior with floor-to-ceiling windows during a site visit",
+  },
+  {
+    number: "03",
+    label: "Step 3",
+    title: "Design Finalization",
+    description:
+      "Once measurements and preferences are confirmed, our design team prepares detailed mockups and material samples, so every fabric, finish, and fitting is approved before production begins.",
+    image: img3,
+    alt: "Design mockups and material samples laid out for review",
+  },
+  {
+    number: "04",
+    label: "Step 4",
+    title: "Production",
+    description:
+      "Approved designs move into production at our workshop, where skilled craftsmen bring precision and quality control to every cut, seam, and finish.",
+    image: img4,
+    alt: "Craftsmen working in a furniture production workshop",
+  },
+  {
+    number: "05",
+    label: "Step 5",
+    title: "Installation",
+    description:
+      "Our trained installation team delivers and fits each piece on-site with care, ensuring a flawless finish and a space that's ready to enjoy from day one.",
+    image: img5,
+    alt: "Installation team fitting furnishings on-site",
+  },
+];
 
 const WorkProcess = () => {
   return (
     <>
       <Breadcrumb />
-      <section className="lux-consultancy">
-        <div className="lux-container">
-          {/* LEFT CONTENT */}
-          <div className="lux-content-block">
+
+      <section className="lux-process-section">
+        <div className="lux-process-container">
+          <div className="lux-process-header">
             <div className="lux-meta-tag">
               <span className="lux-line"></span>
-              <span className="lux-tag-text">Why Consultancy Matters</span>
+              <span className="lux-tag-text">How We Work</span>
             </div>
-
-            <h2 className="lux-heading">
-              Expert Guidance <br />
-              Makes <span>Every Decision Better</span>
+            <h2 className="lux-process-heading">
+              Our Process, <span>Step by Step</span>
             </h2>
-
-            <p className="lux-description">
-              Professional consultancy helps individuals and businesses make
-              confident, well-planned decisions by combining industry expertise,
-              strategic thinking, and customized solutions tailored to long-term
-              growth and success.
+            <p className="lux-process-subheading">
+              From the first idea to the final fitting, every project follows
+              a clear, considered path — designed to remove guesswork and
+              deliver a result you can trust.
             </p>
-
-            {/* PROCESS TIMELINE/FEATURES */}
-            <div className="lux-process-stack">
-              <div className="lux-process-item">
-                <div className="lux-index">01</div>
-                <div className="lux-process-body">
-                  <h3>Strategic Planning</h3>
-                  <p>
-                    Clear roadmaps and expert insights help streamline
-                    operations, reduce risks, and improve overall project
-                    execution.
-                  </p>
-                </div>
-              </div>
-
-              <div className="lux-process-item">
-                <div className="lux-index">02</div>
-                <div className="lux-process-body">
-                  <h3>Industry Expertise</h3>
-                  <p>
-                    Experienced consultants provide practical solutions, modern
-                    approaches, and valuable knowledge for better outcomes.
-                  </p>
-                </div>
-              </div>
-
-              <div className="lux-process-item">
-                <div className="lux-index">03</div>
-                <div className="lux-process-body">
-                  <h3>Growth & Efficiency</h3>
-                  <p>
-                    Consultancy services improve productivity, optimize
-                    resources, and support sustainable business development
-                    effectively.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* CALL TO ACTIONS */}
-            <div className="lux-action-group">
-              <Link to="/book-a-meeting" className="lux-btn-solid">
-                <span>Book A Meeting</span>
-
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 13L13 1M13 1H3.5M13 1V10.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-              {/* 
-              <Link to="/about" className="lux-btn-text">
-                <span>Learn More</span>
-              </Link> */}
-            </div>
           </div>
 
-          {/* RIGHT VISUAL */}
-          <div className="lux-visual-block">
-            <div className="lux-image-composition">
-              {/* Main Canvas Frame */}
-              <div className="lux-frame main-frame">
-                {
-                  /* <img 
-                  src="src/assets/banner/why-consultancy.jpg"
-                  alt="Professional Consultancy Services"
-                /> */
-                  <img
-                    src={consultancyImg}
-                    alt="Professional Consultancy Services"
-                  />
-                }
-                <div className="lux-overlay-shimmer"></div>
-              </div>
-
-              {/* Floating context badge */}
-              <div className="lux-status-badge">
-                <span className="lux-pulse-dot"></span>
-                <span className="lux-badge-label">Trusted Consultancy</span>
-              </div>
-
-              {/* Architectural Stat Card */}
-              <div className="lux-stat-card">
-                <div className="lux-stat-header">
-                  <span className="lux-stat-title">Successful Projects</span>
-                  <span className="lux-stat-number">300+</span>
+          <div className="lux-process-list">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                className={`lux-process-row${
+                  index % 2 === 1 ? " reversed" : ""
+                }`}
+              >
+                <div className="lux-process-visual">
+                  <div className="lux-process-frame">
+                    <img src={step.image} alt={step.alt} loading="lazy" />
+                    <div className="lux-process-shimmer"></div>
+                  </div>
+                  <span className="lux-process-bignum">{step.number}</span>
                 </div>
 
-                <p className="lux-stat-caption">
-                  Businesses and clients empowered with strategic consultancy
-                  solutions.
-                </p>
+                <div className="lux-process-copy">
+                  <span className="lux-process-label">{step.label}</span>
+                  <h3 className="lux-process-title">{step.title}</h3>
+                  <p className="lux-process-desc">{step.description}</p>
+                </div>
+
+                {index !== steps.length - 1 && (
+                  <span className="lux-process-connector" aria-hidden="true"></span>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
       <TrustSection />
     </>
   );

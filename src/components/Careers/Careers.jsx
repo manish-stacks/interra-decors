@@ -231,7 +231,6 @@ const Careers = () => {
 
   return (
     <main className="cr-page">
-
       {/* ══════════════════ 4. OPENINGS (EMPTY STATE) ══════════════════ */}
       <section className="cr-openings" id="cr-openings" ref={openRef}>
         <div className="cr-container">
@@ -243,13 +242,13 @@ const Careers = () => {
             </div>
 
             <h3 className="cr-empty-state__heading">
-              No Open Positions — For Now
+              A Workplace Designed for Excellence
             </h3>
             <p className="cr-empty-state__body">
-              Currently, there are no open positions available. However, we're
-              always looking for talented and passionate individuals to join our
-              journey. The right people don't wait for a posting — they reach
-              out.
+              Our office environment fosters creativity, collaboration, and
+              innovation. We believe that great ideas thrive in inspiring spaces
+              where talented individuals work together to create meaningful
+              impact and deliver exceptional experiences.
             </p>
 
             <div className="cr-empty-state__divider" aria-hidden="true" />
@@ -274,7 +273,6 @@ const Careers = () => {
           </div>
         </div>
       </section>
-
     </main>
   );
 };

@@ -1,5 +1,9 @@
 import React from "react";
 import "./MissionVision.css";
+import img1 from "../../assets/mission/01.jpg";
+import img2 from "../../assets/mission/02.jpg";
+import img3 from "../../assets/mission/03.jpg";
+import img4 from "../../assets/mission/04.jpg";
 
 const MissionVision = () => {
   return (
@@ -20,7 +24,7 @@ const MissionVision = () => {
               precision, comfort, and sophisticated design sensibilities.”
             </p>
 
-            <span class="font-signature">Teko & Plus Jakarta Sans</span>
+            {/* <span class="font-signature">Teko & Plus Jakarta Sans</span> */}
           </div>
         </div>
 
@@ -39,7 +43,7 @@ const MissionVision = () => {
               luxury, innovation, and enduring architectural beauty.”
             </p>
 
-            <span class="font-signature">Teko & Plus Jakarta Sans</span>
+            {/* <span class="font-signature">Teko & Plus Jakarta Sans</span> */}
           </div>
         </div>
       </div>
@@ -52,6 +56,9 @@ const MissionVision = () => {
 
           <div class="matrix-grid">
             <div class="matrix-cell">
+              <div class="matrix-thumb">
+                <img src={img1} alt="Elegance" />
+              </div>
               <h4 class="pillar-title">ELEGANCE</h4>
 
               <div class="cell-body">
@@ -67,6 +74,9 @@ const MissionVision = () => {
             </div>
 
             <div class="matrix-cell">
+              <div class="matrix-thumb">
+                <img src={img2} alt="Elegance" />
+              </div>
               <h4 class="pillar-title">QUALITY</h4>
 
               <div class="cell-body">
@@ -82,6 +92,9 @@ const MissionVision = () => {
             </div>
 
             <div class="matrix-cell">
+              <div class="matrix-thumb">
+                <img src={img3} alt="Elegance" />
+              </div>
               <h4 class="pillar-title">PRECISION</h4>
 
               <div class="cell-body">
@@ -97,6 +110,9 @@ const MissionVision = () => {
             </div>
 
             <div class="matrix-cell">
+              <div class="matrix-thumb">
+                <img src={img4} alt="Elegance" />
+              </div>
               <h4 class="pillar-title">EXPERIENCE</h4>
 
               <div class="cell-body">

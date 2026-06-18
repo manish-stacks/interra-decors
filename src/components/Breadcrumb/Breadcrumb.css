@@ -26,7 +26,7 @@
     z-index: 2;
     color: #fff;
     max-width: 900px;
-        padding-top: 50px;
+    padding-top: 70px;
 }
 
 /* Title */
@@ -151,4 +151,8 @@
     .breadcrumb-title {
         font-size: 22px;
     }
+    .breadcrumb-content {
+    padding-top: 30px;
+}
+
 }

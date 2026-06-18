@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./CallToAction.css";
+import ctaGirl from "../../assets/cta-girl.png";
 export default function CallToAction() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -92,14 +93,13 @@ export default function CallToAction() {
               <span className="cta-eyebrow-dot" />
             </span>
             <h2 className="cta-heading">
-              Let's <em>Transform</em>
-              <br />
-              Your Space
+              Discover Tailor-Made <em>Furnishing Solutions</em>
             </h2>
+
             <p className="cta-sub">
-              Looking for premium furnishing solutions?
-              <br />
-              Connect with our experts today.
+              Transform your interiors with premium curtains, blinds,
+              wallpapers, and custom décor crafted to bring elegance and comfort
+              to every space.
             </p>
 
             <div className="cta-buttons">
@@ -212,8 +212,8 @@ export default function CallToAction() {
 
           {/* ── RIGHT: animated border contact card ── */}
           <div className="cta-right">
-            <div className="cta-card-wrap">
-              {/* Animated border SVG */}
+            <img src={ctaGirl} alt="CTA Girl" />
+            {/* <div className="cta-card-wrap">
               <svg
                 className="cta-border-svg"
                 viewBox="0 0 420 280"
@@ -246,7 +246,6 @@ export default function CallToAction() {
                 <div className="cta-card-label">Reach Us Directly</div>
 
                 <div className="cta-contact-items">
-                  {/* Phone */}
                   <div className="cta-contact-item">
                     <div className="cta-contact-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -265,7 +264,6 @@ export default function CallToAction() {
                     </div>
                   </div>
 
-                  {/* Email */}
                   <div className="cta-contact-item">
                     <div className="cta-contact-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -294,7 +292,6 @@ export default function CallToAction() {
                     </div>
                   </div>
 
-                  {/* Location */}
                   <div className="cta-contact-item">
                     <div className="cta-contact-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -326,7 +323,7 @@ export default function CallToAction() {
                   <span>Creating Luxury Interiors with Modern Elegance</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

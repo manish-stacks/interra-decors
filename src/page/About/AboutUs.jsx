@@ -12,7 +12,7 @@ const AboutUs = () => {
       <Breadcrumb />
       <IntroductionSection />
       <MissionVision />
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <ServicesSection />
       <TrustSection />
     </>

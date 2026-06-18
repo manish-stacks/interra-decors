@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Footer.css";
-import logo from "../../assets/new-logo.png";
+import logo from "../../assets/logo.png";
 
 const navLinks = {
   Company: [
@@ -32,7 +32,7 @@ const navLinks = {
   Support: [
     { name: "Book a Meeting", path: "/book-a-meeting" },
     { name: "Request Catalogue", path: "#" },
-    { name: "FAQs", path: "#" },
+    { name: "FAQs", path: "/faqs" },
     { name: "Contact Us", path: "/contact-us" },
     { name: "Blog", path: "/blogs" },
   ],
