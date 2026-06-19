@@ -98,7 +98,7 @@ const Contact = () => {
                   <div className="cp-detail-text">
                     <label>Address</label>
                     <span>
-                      Shop No. 129, 1st Floor, Jmd Suburbio, 67, Badshahpur
+                      Shop No. 129, 1st Floor, Jmd Suburbio 67, Badshahpur
                       Sohna Rd, Sector 67, Gurugram, Haryana 122101
                     </span>
                   </div>
@@ -128,7 +128,7 @@ const Contact = () => {
               <div className="cp-social-card">
                 <h4>Follow Us</h4>
                 <div className="cp-socials">
-                  <a className="cp-social-btn" href="#" aria-label="Instagram">
+                  <a className="cp-social-btn" href="https://www.instagram.com/interradecors?igsh=MXhveWY2cm9sMWFvcQ==" target="_blank" aria-label="Instagram">
                     <Instagram size={16} />
                   </a>
                   <a className="cp-social-btn" href="#" aria-label="Facebook">
@@ -257,8 +257,9 @@ const Contact = () => {
                   title="Office Location"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14004.07!2d77.2795!3d28.6448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb4e0b000001%3A0x1234abcd!2sKrishna+Nagar%2C+Delhi!5e0!3m2!1sen!2sin!4v1680000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1875056635895!2d77.0555897!3d28.383404099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d238424d20603%3A0xe20206a5097592e2!2sInterra%20Decors!5e0!3m2!1sen!2sin!4v1781854052185!5m2!1sen!2sin"
                 />
+
               </div>
             </div>
           </div>

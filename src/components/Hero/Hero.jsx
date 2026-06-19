@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./hero.css";
 import { Link } from "react-router-dom";
-// import banner01 from "../../assets/banner/banner-upholstery.webp"
+import banner05 from "../../assets/banner/premium-bed.jpg"
 import banner01 from "../../assets/banner/banner.jpg"
 import banner02 from "../../assets/banner/banner2.jpg"
 // import banner02 from "../../assets/banner/banner-bed-bath-linens.webp"
@@ -37,7 +37,7 @@ const slides = [
     sub: "Experience Softness, Elegance & Hotel-Like Comfort at Home.",
     btn1: "Book a Consultation",
     btn2: "View Collection",
-    bg: banner02,
+    bg: banner05,
   },
   {
     id: 3,

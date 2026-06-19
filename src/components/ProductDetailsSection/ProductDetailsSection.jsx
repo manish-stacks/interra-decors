@@ -1049,7 +1049,7 @@ const ProductDetailsSection = () => {
               {product.inStock ? "✓ In Stock" : "✗ Out of Stock"}
             </span>
           </div>
-          <div className="pds-price-block">
+          {/* <div className="pds-price-block">
             <span className="pds-price">
               ₹{product.price.toLocaleString("en-IN")}
             </span>
@@ -1060,7 +1060,7 @@ const ProductDetailsSection = () => {
               Save ₹
               {(product.originalPrice - product.price).toLocaleString("en-IN")}
             </span>
-          </div>
+          </div> */}
           <div className="pds-separator" />
 
           {/* <div className="pds-option-row">
@@ -1293,14 +1293,14 @@ const ProductDetailsSection = () => {
                     <span className="pds-rel-cat">{item.category}</span>
                     <h4 className="pds-rel-name">{item.name}</h4>
                     <StarRating rating={item.rating} size={12} />
-                    <div className="pds-rel-price-row">
+                    {/* <div className="pds-rel-price-row">
                       <span className="pds-rel-price">
                         ₹{item.price.toLocaleString("en-IN")}
                       </span>
                       <span className="pds-rel-old">
                         ₹{item.originalPrice.toLocaleString("en-IN")}
                       </span>
-                    </div>
+                    </div> */}
                     <button
                       className="pds-rel-btn"
                       onClick={(e) => {

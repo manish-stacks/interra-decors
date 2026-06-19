@@ -31,7 +31,7 @@ const navLinks = {
   ],
   Support: [
     { name: "Book a Meeting", path: "/book-a-meeting" },
-    { name: "Request Catalogue", path: "#" },
+    { name: "Request Catalogue", path: "/request-catalogue" },
     { name: "FAQs", path: "/faqs" },
     { name: "Contact Us", path: "/contact-us" },
     { name: "Blog", path: "/blogs" },
@@ -41,7 +41,8 @@ const navLinks = {
 const socials = [
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/interradecors?igsh=MXhveWY2cm9sMWFvcQ==",
+
     icon: (
       <svg viewBox="0 0 20 20" fill="none">
         <rect
@@ -138,7 +139,6 @@ const socials = [
 
 const certBadges = [
   "ISO 9001:2015",
-  "GRIHA Certified",
   "GST Registered",
   "MSME Registered",
 ];
@@ -351,7 +351,7 @@ export default function Footer() {
                     />
                   </svg>
                 </span>
-                Shop No. 129, 1st Floor, Jmd Suburbio, 67, Badshahpur Sohna Rd, Sector 67, Gurugram, Haryana 122101
+                Shop No. 129, 1st Floor, Jmd Suburbio 67, Badshahpur Sohna Rd, Sector 67, Gurugram, Haryana 122101
               </span>
             </div>
 
@@ -362,6 +362,7 @@ export default function Footer() {
                   key={s.name}
                   href={s.href}
                   className="ft-social-btn"
+                  target="_blank"
                   aria-label={s.name}
                 >
                   {s.icon}
@@ -402,7 +403,7 @@ export default function Footer() {
           <p className="ft-copy">
             © {new Date().getFullYear()} Interra Decors. All rights reserved.
           </p>
-          <div className="ft-bottom-links">
+          {/* <div className="ft-bottom-links">
             <a href="#" className="ft-bottom-link">
               Privacy Policy
             </a>
@@ -414,7 +415,7 @@ export default function Footer() {
             <a href="#" className="ft-bottom-link">
               Sitemap
             </a>
-          </div>
+          </div> */}
           <p className="ft-made">Developed By Hover Business Services LLP</p>
         </div>
       </div>

@@ -1025,6 +1025,7 @@
   letter-spacing: 0.3px;
   text-transform: uppercase;
   transition: background var(--pds-transition), transform var(--pds-transition);
+  margin-top: 20px;
 }
 
 .pds-rel-btn:hover {

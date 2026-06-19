@@ -17,6 +17,7 @@ import Team from "./page/OurTeam/OurTeam";
 import WorkProcess from "./page/WorkProcess/WorkProcessPage";
 import CareersPage from "./page/CareersPage/CareersPage";
 import Faqs from "./page/Faqs/Faqs";
+import RequestCatalogue from "./components/RequestCatalogue/RequestCatalogue";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/our-projects" element={<Projects />} />
           <Route path="/work-process" element={<WorkProcess />} />
           <Route path="/book-a-meeting" element={<Meeting />} />
+          <Route path="/request-catalogue" element={<RequestCatalogue />} />
           <Route path="/our-team" element={<Team/>} />
           <Route path="/career" element={<CareersPage/>} />
           <Route path="/Faqs" element={<Faqs/>} />
