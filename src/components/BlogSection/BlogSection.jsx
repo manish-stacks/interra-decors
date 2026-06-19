@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./BlogSection.css";
-import Pro01 from "../../assets/products/sheer-elegance-curtains.jpg";
-import Pro02 from "../../assets/products/velvet-blackout-curtains.jpg";
-import Pro03 from "../../assets/products/linen-sofa-upholstery.jpg";
-import Pro04 from "../../assets/products/geometric-wallpaper.webp";
-import Pro05 from "../../assets/products/roman-blinds.jpg";
-import Pro06 from "../../assets/products/motorized-roller-blinds.jpg";
-import Pro07 from "../../assets/products/geometric-wallpaper.webp";
-import Pro08 from "../../assets/products/roman-blinds.jpg";
-import Pro09 from "../../assets/products/motorized-roller-blinds.jpg";
+import Pro01 from "../../assets/blog/blog1.jpeg";
+import Pro02 from "../../assets/blog/blog2.jpeg";
+import Pro03 from "../../assets/blog/blog3.jpeg";
+import Pro04 from "../../assets/blog/blog4.jpg";
+import Pro05 from "../../assets/blog/blog5.jpg";
+import Pro06 from "../../assets/blog/blog6.jpg";
+import Pro07 from "../../assets/blog/blog7.png";
+import Pro08 from "../../assets/blog/blog8.jpg";
+import Pro09 from "../../assets/blog/blog9.jpg";
 const posts = [
   {
     id: 1,
@@ -17,10 +17,10 @@ const posts = [
     tag: "Featured",
     date: "Mar 10, 2025",
     readTime: "5 min read",
-    title: "How to Choose the Right Flooring for Every Room",
+    title: "Choosing the Perfect Bedroom Curtains for Style and Comfort",
     image: Pro01,
     excerpt:
-      "From high-traffic living areas to moisture-prone bathrooms — a guide to flooring that balances beauty, durability, and lifestyle.",
+      "Explore practical curtain ideas that enhance privacy, improve lighting control, and create a cozy bedroom atmosphere.",
   },
   {
     id: 2,
@@ -29,10 +29,10 @@ const posts = [
     tag: "Trending",
     date: "Feb 24, 2025",
     readTime: "4 min read",
-    title: "2025 Furniture Trends Defining Modern Interiors",
+    title: "Stylish Curtain Designs to Refresh Your Living Room Space",
     image: Pro02,
     excerpt:
-      "Curved silhouettes, warm earth tones, and sustainable materials are reshaping how we furnish homes this year.",
+      "Discover elegant curtain styles that add character, improve ambiance, and elevate your living room décor effortlessly.",
   },
   {
     id: 3,
@@ -41,10 +41,10 @@ const posts = [
     tag: "Case Study",
     date: "Feb 08, 2025",
     readTime: "6 min read",
-    title: "Behind the Scenes: A 5-Star Hotel Furnishing Project",
+    title: "A Complete Guide to Selecting Minimalist Curtains for Homes",
     image: Pro03,
     excerpt:
-      "We take you inside a luxury resort project — from initial measurements to the final installation walkthrough.",
+      "Learn how minimalist curtain designs create clean aesthetics while maintaining functionality, comfort, and timeless appeal.",
   },
   {
     id: 4,
@@ -53,10 +53,10 @@ const posts = [
     tag: null,
     date: "Jan 20, 2025",
     readTime: "3 min read",
-    title: "Veneer vs Solid Wood: Which Should You Choose?",
+    title: "Why Vintage Hotel Curtain Styles Are Making a Strong Return",
     image: Pro04,
     excerpt:
-      "Breaking down pros, cons, price points, and ideal use cases for two of the most popular furniture materials.",
+      "Explore classic curtain inspirations from historic hotels and discover how they fit beautifully into modern interiors.",
   },
   {
     id: 5,
@@ -65,10 +65,10 @@ const posts = [
     tag: null,
     date: "Jan 05, 2025",
     readTime: "4 min read",
-    title: "10 Small Changes That Make a Big Difference in Any Room",
+    title: "Transform Your Interiors with Elegant Sheer Curtain Designs",
     image: Pro05,
     excerpt:
-      "Lighting, textures, and strategic placement — small upgrades that transform a space without a full renovation.",
+      "Find out how sheer curtains enhance natural light, create airy spaces, and add sophistication to every room.",
   },
   {
     id: 6,
@@ -77,47 +77,47 @@ const posts = [
     tag: "New",
     date: "Dec 18, 2024",
     readTime: "5 min read",
-    title: "The Rise of Modular Furniture in Commercial Spaces",
+    title: "Enhancing Home Décor Through Creative Color and Pattern Choices",
     image: Pro06,
     excerpt:
-      "How offices, hotels, and co-working spaces are embracing modular furnishing for flexibility and cost efficiency.",
+      "Understand how color combinations and decorative patterns influence mood, balance, and visual appeal in interiors.",
   },
   {
-  id: 7,
-  num: "07",
-  category: "Home Décor",
-  tag: "Popular",
-  date: "Nov 30, 2024",
-  readTime: "4 min read",
-  title: "Top Curtain and Blind Styles for Modern Homes",
-  image: Pro01,
-  excerpt:
-    "Discover the latest curtain and blind trends that add elegance, privacy, and functionality to contemporary interiors.",
-},
-{
-  id: 8,
-  num: "08",
-  category: "Space Planning",
-  tag: "Expert Tips",
-  date: "Nov 15, 2024",
-  readTime: "5 min read",
-  title: "Smart Space-Saving Furniture Ideas for Compact Homes",
-  image: Pro03,
-  excerpt:
-    "Maximize every square foot with multifunctional furniture and clever layouts designed for modern living.",
-},
-{
-  id: 9,
-  num: "09",
-  category: "Material Guide",
-  tag: "Featured",
-  date: "Oct 28, 2024",
-  readTime: "6 min read",
-  title: "Choosing the Perfect Upholstery Fabric for Your Furniture",
-  image: Pro04,
-  excerpt:
-    "Learn how to select durable, stylish, and easy-to-maintain fabrics that complement your décor and lifestyle.",
-},
+    id: 7,
+    num: "07",
+    category: "Home Décor",
+    tag: "Popular",
+    date: "Nov 30, 2024",
+    readTime: "4 min read",
+    title: "Creative Curtain Ideas to Design a Fun Kids Bedroom Space",
+    image: Pro07,
+    excerpt:
+      "Discover playful curtain styles, colors, and themes that make children's bedrooms vibrant, comfortable, and inviting.",
+  },
+  {
+    id: 8,
+    num: "08",
+    category: "Space Planning",
+    tag: "Expert Tips",
+    date: "Nov 15, 2024",
+    readTime: "5 min read",
+    title: "Long or Short Curtains: Finding the Right Window Solution",
+    image: Pro08,
+    excerpt:
+      "Compare curtain lengths to determine which option best suits your room layout, style preferences, and needs.",
+  },
+  {
+    id: 9,
+    num: "09",
+    category: "Material Guide",
+    tag: "Featured",
+    date: "Oct 28, 2024",
+    readTime: "6 min read",
+    title: "Choosing Bedroom Curtains That Support Feng Shui Principles",
+    image: Pro09,
+    excerpt:
+      "Learn how curtain colors, fabrics, and placement can promote harmony, relaxation, and positive energy flow.",
+  },
 ];
 
 const ArrowIcon = ({ size = 14 }) => (
