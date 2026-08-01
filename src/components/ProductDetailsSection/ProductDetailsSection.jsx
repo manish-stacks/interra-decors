@@ -1169,10 +1169,10 @@ const ProductDetailsSection = () => {
               <span>🔒</span>
               <span>Secure Payment</span>
             </div>
-            <div className="pds-trust-item">
+            {/* <div className="pds-trust-item">
               <span>↩️</span>
               <span>7-Day Returns</span>
-            </div>
+            </div> */}
             <div className="pds-trust-item">
               <span>🏅</span>
               <span>Genuine Product</span>

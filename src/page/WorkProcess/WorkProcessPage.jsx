@@ -8,7 +8,7 @@ import img1 from "../../assets/work-process/01.jpg";
 import img2 from "../../assets/work-process/02.jpg";
 import img3 from "../../assets/work-process/03.jpg";
 import img4 from "../../assets/work-process/04.jpg";
-import img5 from "../../assets/work-process/01.jpg";
+import img5 from "../../assets/work-process/05.jpg";
 
 const steps = [
   {

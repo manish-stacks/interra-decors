@@ -7,7 +7,7 @@ import Client02 from "../../assets/products-cat/architects.jpg";
 import Client03 from "../../assets/products-cat/hotels.jpg";
 import Client04 from "../../assets/products-cat/corporates.jpg";
 import Client05 from "../../assets/products-cat/builders.jpg";
-import Client06 from "../../assets/products-cat/builders.jpg";
+import Client06 from "../../assets/products-cat/homeowners.jpg";
 
 const slides = [
   { src: Client01, alt: "Interior Designers", label: "Interior Designers" },

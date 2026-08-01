@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Footer.css";
 import logo from "../../assets/logo.png";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const navLinks = {
   Company: [
@@ -42,99 +44,23 @@ const socials = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/interradecors?igsh=MXhveWY2cm9sMWFvcQ==",
-
-    icon: (
-      <svg viewBox="0 0 20 20" fill="none">
-        <rect
-          x="2"
-          y="2"
-          width="16"
-          height="16"
-          rx="5"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-        <circle
-          cx="10"
-          cy="10"
-          r="3.5"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-        <circle cx="14.5" cy="5.5" r="1" fill="currentColor" />
-      </svg>
-    ),
+    icon: <Instagram className="w-5 h-5" />,
   },
   {
     name: "LinkedIn",
-    href: "#",
-    icon: (
-      <svg viewBox="0 0 20 20" fill="none">
-        <rect
-          x="2"
-          y="2"
-          width="16"
-          height="16"
-          rx="3"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-        <line
-          x1="6"
-          y1="8.5"
-          x2="6"
-          y2="14"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-        <circle cx="6" cy="6.2" r="0.9" fill="currentColor" />
-        <path
-          d="M9.5 8.5v1.2c.5-1 1.4-1.4 2.5-1.4 1.8 0 2.5 1.2 2.5 2.8V14"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
+    href: "https://www.linkedin.com/company/interra-decors/",
+    icon: <Linkedin className="w-5 h-5" />,
   },
   {
     name: "WhatsApp",
-    href: "#",
-    icon: (
-      <svg viewBox="0 0 20 20" fill="none">
-        <path
-          d="M17 10a7 7 0 1 1-2.05-4.95L17 3l-1.85 3.05A7 7 0 0 1 17 10Z"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M7 8.5c.5 1.5 1.5 2.5 3 3l.8-.8c.2-.2.5-.2.7 0l1.3 1.3c.2.2.2.5 0 .7-.8.8-2 1-3-.2C8 11.3 7 9.5 7 8.5Z"
-          fill="currentColor"
-          opacity="0.7"
-        />
-      </svg>
-    ),
+    href: "https://www.facebook.com/share/1FwPDe4mfd/",
+    icon: <FaWhatsapp className="w-5 h-5" />,
   },
-  {
-    name: "YouTube",
-    href: "#",
-    icon: (
-      <svg viewBox="0 0 20 20" fill="none">
-        <rect
-          x="2"
-          y="4"
-          width="16"
-          height="12"
-          rx="3"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-        <path d="M8.5 7.5l4 2.5-4 2.5V7.5Z" fill="currentColor" opacity="0.7" />
-      </svg>
-    ),
-  },
+  // {
+  //   name: "YouTube",
+  //   href: "#",
+  //   icon: <Youtube className="w-5 h-5" />,
+  // },
 ];
 
 const certBadges = [
@@ -355,7 +281,7 @@ export default function Footer() {
               </span>
             </div>
 
-            {/* Socials */}
+            {/* Socials – now using Lucide & react-icons */}
             <div className="ft-socials">
               {socials.map((s) => (
                 <a
@@ -403,19 +329,6 @@ export default function Footer() {
           <p className="ft-copy">
             © {new Date().getFullYear()} Interra Decors. All rights reserved.
           </p>
-          {/* <div className="ft-bottom-links">
-            <a href="#" className="ft-bottom-link">
-              Privacy Policy
-            </a>
-            <span className="ft-bottom-sep">·</span>
-            <a href="#" className="ft-bottom-link">
-              Terms of Use
-            </a>
-            <span className="ft-bottom-sep">·</span>
-            <a href="#" className="ft-bottom-link">
-              Sitemap
-            </a>
-          </div> */}
           <p className="ft-made">Developed By Hover Business Services LLP</p>
         </div>
       </div>

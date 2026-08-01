@@ -18,6 +18,7 @@ import WorkProcess from "./page/WorkProcess/WorkProcessPage";
 import CareersPage from "./page/CareersPage/CareersPage";
 import Faqs from "./page/Faqs/Faqs";
 import RequestCatalogue from "./components/RequestCatalogue/RequestCatalogue";
+import FloatingContact from "./components/FloatingContact/FloatingContact";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/Faqs" element={<Faqs/>} />
         </Routes>
         <Footer />
+        <FloatingContact />
       </BrowserRouter>
     </>
   );

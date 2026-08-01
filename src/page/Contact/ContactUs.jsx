@@ -26,16 +26,65 @@ const Contact = () => {
     service: "",
     message: "",
   });
-  const [sent, setSent] = useState(false);
-  const [toast, setToast] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setToast(true);
-    setTimeout(() => setToast(false), 3500);
+
+    // Validate required fields
+    if (!form.name || !form.email || !form.message) {
+      setToast({
+        show: true,
+        message: "Please fill in all required fields.",
+        type: "error",
+      });
+      setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+      return;
+    }
+
+    setLoading(true);
+    setToast({ show: false, message: "", type: "" });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setToast({
+          show: true,
+          message: "✅ Message sent! We'll get back to you soon.",
+          type: "success",
+        });
+        // Reset form
+        setForm({ name: "", email: "", phone: "", service: "", message: "" });
+      } else {
+        setToast({
+          show: true,
+          message: `❌ ${data.error || "Something went wrong."}`,
+          type: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setToast({
+        show: true,
+        message: "❌ Network error. Please check your connection.",
+        type: "error",
+      });
+    } finally {
+      setLoading(false);
+      setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+    }
   };
 
   return (
@@ -105,40 +154,33 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Working Hours Card */}
-              {/* <div className="cp-hours-card">
-              <h4>
-                <Clock size={15} /> Working Hours
-              </h4>
-              <div className="cp-hour-row">
-                <strong>Monday – Friday</strong>
-                <span>9:00 AM – 7:00 PM</span>
-              </div>
-              <div className="cp-hour-row">
-                <strong>Saturday</strong>
-                <span>10:00 AM – 5:00 PM</span>
-              </div>
-              <div className="cp-hour-row">
-                <strong>Sunday</strong>
-                <span>By Appointment</span>
-              </div>
-            </div> */}
-
               {/* Social Card */}
               <div className="cp-social-card">
                 <h4>Follow Us</h4>
                 <div className="cp-socials">
-                  <a className="cp-social-btn" href="https://www.instagram.com/interradecors?igsh=MXhveWY2cm9sMWFvcQ==" target="_blank" aria-label="Instagram">
+                  <a
+                    className="cp-social-btn"
+                    href="https://www.instagram.com/interradecors?igsh=MXhveWY2cm9sMWFvcQ=="
+                    target="_blank"
+                    aria-label="Instagram"
+                  >
                     <Instagram size={16} />
                   </a>
-                  <a className="cp-social-btn" href="#" aria-label="Facebook">
+                  <a
+                    className="cp-social-btn"
+                    href="https://www.linkedin.com/company/interra-decors/"
+                    target="_blank"
+                    aria-label="Facebook"
+                  >
                     <Facebook size={16} />
                   </a>
-                  <a className="cp-social-btn" href="#" aria-label="LinkedIn">
+                  <a
+                    className="cp-social-btn"
+                    href="https://www.facebook.com/share/1FwPDe4mfd/"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                  >
                     <Linkedin size={16} />
-                  </a>
-                  <a className="cp-social-btn" href="#" aria-label="YouTube">
-                    <Youtube size={16} />
                   </a>
                 </div>
               </div>
@@ -154,23 +196,23 @@ const Contact = () => {
                 <form onSubmit={submit}>
                   <div className="cp-form-row">
                     <div className="cp-field">
-                      <label>Your Name</label>
+                      <label>Your Name *</label>
                       <input
                         name="name"
                         value={form.name}
-                        onChange={handle}
+                        onChange={handleChange}
                         placeholder="Enter your name"
                         required
                       />
                     </div>
 
                     <div className="cp-field">
-                      <label>Email Address</label>
+                      <label>Email Address *</label>
                       <input
                         name="email"
                         type="email"
                         value={form.email}
-                        onChange={handle}
+                        onChange={handleChange}
                         placeholder="you@example.com"
                         required
                       />
@@ -181,7 +223,7 @@ const Contact = () => {
                       <input
                         name="phone"
                         value={form.phone}
-                        onChange={handle}
+                        onChange={handleChange}
                         placeholder="+91 XXXXX XXXXX"
                       />
                     </div>
@@ -191,7 +233,7 @@ const Contact = () => {
                       <select
                         name="service"
                         value={form.service}
-                        onChange={handle}
+                        onChange={handleChange}
                       >
                         <option value="">Select a service…</option>
                         <option>Residential Design</option>
@@ -202,16 +244,17 @@ const Contact = () => {
                       </select>
                     </div>
 
-                    {/* <div className="cp-field full">
-                      <label>Your Message</label>
+                    <div className="cp-field full">
+                      <label>Your Message *</label>
                       <textarea
                         name="message"
                         rows="5"
                         value={form.message}
-                        onChange={handle}
+                        onChange={handleChange}
                         placeholder="Tell us about your project, timeline, and budget…"
+                        required
                       />
-                    </div> */}
+                    </div>
                   </div>
 
                   <div className="cp-submit-row">
@@ -221,12 +264,11 @@ const Contact = () => {
                     </p>
                     <button
                       type="submit"
-                      className={`cp-submit-btn${sent ? " sent" : ""}`}
+                      className={`cp-submit-btn${loading ? " loading" : ""}`}
+                      disabled={loading}
                     >
-                      {sent ? (
-                        <>
-                          <CheckCircle size={14} /> Message Sent
-                        </>
+                      {loading ? (
+                        <>Sending…</>
                       ) : (
                         <>
                           <Send size={13} /> Send Message
@@ -259,7 +301,6 @@ const Contact = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1875056635895!2d77.0555897!3d28.383404099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d238424d20603%3A0xe20206a5097592e2!2sInterra%20Decors!5e0!3m2!1sen!2sin!4v1781854052185!5m2!1sen!2sin"
                 />
-
               </div>
             </div>
           </div>
@@ -268,11 +309,19 @@ const Contact = () => {
 
       <TrustSection />
 
-      {/* ── SUCCESS TOAST ── */}
-      {toast && (
-        <div className="cp-toast">
-          <CheckCircle size={15} color="#1db9af" />
-          Message received! We'll be in touch soon.
+      {/* ── TOAST ── */}
+      {toast.show && (
+        <div
+          className={`cp-toast ${
+            toast.type === "error" ? "cp-toast-error" : "cp-toast-success"
+          }`}
+        >
+          {toast.type === "success" ? (
+            <CheckCircle size={15} color="#1db9af" />
+          ) : (
+            <span>⚠️</span>
+          )}
+          {toast.message}
         </div>
       )}
     </>
