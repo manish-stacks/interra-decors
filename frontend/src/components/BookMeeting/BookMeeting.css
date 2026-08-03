@@ -1,0 +1,174 @@
+.bm-page {
+    min-height: 100vh;
+    background: #f7f3ee;
+    padding: 60px 5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bm-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.bm-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bm-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+.bm-header p {
+    font-size: 14px;
+    color: #666;
+}
+
+.bm-form-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.bm-grid {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    gap: 16px;
+}
+
+.bm-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bm-field.full {
+    grid-column: span 2;
+}
+
+.bm-field label {
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.bm-field input,
+.bm-field textarea {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f7f3ee;
+    font-size: 13px;
+    outline: none;
+}
+
+.bm-field input:focus,
+.bm-field textarea:focus {
+    border-color: #c8a84b;
+    background: #fff;
+}
+
+.bm-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    background: #0d0d0d;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.bm-btn:hover {
+    background: #c8a84b;
+}
+
+.bm-btn.sent {
+    background: #1db9af;
+}
+
+/* Responsive */
+@media(max-width: 600px) {
+    .bm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bm-field.full {
+        grid-column: span 1;
+    }
+}
+
+.bm-field select {
+    padding: 12px 50px 14px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f7f3ee;
+    font-size: 13px;
+    outline: none;
+    width: 100%;
+    transition: all .3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+}
+
+.bm-field select:focus {
+    border-color: #b7925b;
+    background-color: #f7f4f0;
+    box-shadow:
+        0 0 0 4px rgba(183, 146, 91, 0.10);
+}
+
+.bm-field select {
+    color: #111;
+}
+
+.bm-field select option {
+    background: #ffffff;
+    color: #111;
+}
+
+.bm-field select option:checked {
+    background: #c5a46d;
+    color: #fff;
+}
+
+.bm-field select option:hover,
+.bm-field select option:focus,
+.bm-field select option:active {
+    background: linear-gradient(#c5a46d, #c5a46d);
+    background-color: #c5a46d !important;
+    color: #fff !important;
+
+    box-shadow: 0 0 10px 100px #c5a46d inset !important;
+}
+
+.bm-field select:invalid {
+    color: #9b948c;
+}
+
+.bm-field select option {
+    color: #111;
+}
+
+.bm-field select option[value=""] {
+    color: #9b948c;
+}

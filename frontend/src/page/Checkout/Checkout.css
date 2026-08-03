@@ -1,0 +1,541 @@
+/* =========================================================
+   Checkout.css
+   Fonts:
+     Heading  → 'Teko', sans-serif
+     Body/Para → 'Montserrat', sans-serif
+   Add in index.html <head>:
+     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+   No icon font needed — uses inline SVG icons.
+========================================================= */
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CSS Variables ── */
+.chk {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f5f4f0;
+  --border: rgba(0, 0, 0, 0.09);
+  --border-dark: rgba(0, 0, 0, 0.2);
+  --text: #111827;
+  --muted: #6b7280;
+  --green: #16a34a;
+}
+
+/* ── Page Wrapper ── */
+.chk {
+  font-family: "Montserrat", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 44px 24px 72px;
+  min-height: 100vh;
+}
+
+.chk-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.chk-header {
+  margin-bottom: 36px;
+}
+
+.chk-header h1 {
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: 45px;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.chk-header p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chk-header p svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+/* ── Grid Layout ── */
+.chk-grid {
+  display: grid;
+  grid-template-columns: 1fr 370px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Cards ── */
+.chk-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 26px;
+  margin-bottom: 16px;
+}
+
+.chk-card:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Card Section Labels ── */
+.chk-card-label {
+  font-family: "Teko", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chk-card-label::after {
+  content: "";
+  flex: 1;
+  height: 0.5px;
+  background: var(--border);
+}
+
+/* Icon box inside card label */
+.label-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #c8a84b;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Input Wrapper (SVG icon + input) ── */
+.input-wrap {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* SVG icon inside input */
+.input-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  line-height: 0;
+}
+
+.input-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.chk-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px 12px 38px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  display: block;
+}
+
+.chk-input::placeholder {
+  color: var(--muted);
+}
+
+.chk-input:focus {
+  border-color: #111827;
+  background: #fff;
+}
+
+/* ── Two-column input row ── */
+.chk-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ── Payment Radio Buttons ── */
+.chk-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chk-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  user-select: none;
+}
+
+.chk-radio-label:hover {
+  border-color: var(--border-dark);
+}
+
+.chk-radio-label.active {
+  border-color: #111827;
+  background: #fff;
+}
+
+.radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+.chk-radio-label.active .radio-dot {
+  border-color: #111827;
+}
+
+.radio-dot-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111827;
+  display: none;
+}
+
+.chk-radio-label.active .radio-dot-inner {
+  display: block;
+}
+
+/* SVG icon on right side of radio */
+.pay-icon {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.pay-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.chk-radio-label.active .pay-icon {
+  background: #111827;
+  color: #fff;
+}
+
+/* ── Card Payment Fields ── */
+.card-fields {
+  margin-top: 14px;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ── Right Column — Order Summary ── */
+.chk-right {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 26px;
+  position: sticky;
+  top: 24px;
+}
+
+.order-title {
+  font-family: "Teko", sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+}
+
+/* ── Order Item ── */
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 0.5px solid var(--border);
+}
+
+.order-item:last-of-type {
+  border-bottom: 0.5px solid var(--border);
+}
+
+.order-img {
+  width: 62px;
+  height: 62px;
+  border-radius: 10px;
+  background: var(--surface2);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.order-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.order-info {
+  flex: 1;
+}
+
+.order-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.order-sub {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  color:#2a2b2c;
+  margin-top: 3px;
+}
+
+.order-price {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── Price Breakdown ── */
+.order-breakdown {
+  margin-top: 16px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #2a2b2c;
+  padding: 5px 0;
+  gap: 6px;
+}
+
+.order-row span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.order-row svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.order-row .free {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.order-row.total {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  border-top: 0.5px solid var(--border);
+  padding-top: 14px;
+  margin-top: 8px;
+}
+
+/* ── Promo Code ── */
+.promo-wrap {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.promo-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.promo-input::placeholder {
+  color: var(--muted);
+}
+
+.promo-input:focus {
+  border-color: #111827;
+}
+
+.promo-btn {
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.promo-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.promo-btn:hover {
+  color: var(--text);
+  border-color: var(--border-dark);
+}
+
+/* ── Place Order Button ── */
+.chk-place-btn {
+  width: 100%;
+  background: #111827;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-family: "Teko", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, background 0.3s;
+  margin-top: 16px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chk-place-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.chk-place-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.chk-place-btn:active {
+  transform: scale(0.98);
+}
+
+.chk-place-btn.success {
+  background: var(--green);
+}
+
+/* ── Secure Note ── */
+.secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.secure-note svg {
+  width: 12px;
+  height: 12px;
+  color: var(--green);
+}
+
+/* ── Responsive ── */
+@media (max-width: 760px) {
+  .chk-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chk-right {
+    position: static;
+  }
+
+  .chk-header h1 {
+    font-size: 40px;
+  }
+}

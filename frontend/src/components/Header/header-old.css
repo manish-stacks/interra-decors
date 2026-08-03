@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+.dh-root * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Full-width transparent wrapper — floats over hero */
+.dh-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ── Top Bar ── */
+.dh-topbar {
+    width: 100%;
+border-bottom: 1px solid rgb(187 187 187 / 19%);
+}
+
+.dh-topbar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dh-logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.dh-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.dh-logo-text em {
+    font-style: italic;
+}
+
+.dh-logo-sup {
+    font-size: 8px;
+    vertical-align: super;
+    font-style: normal;
+}
+
+.dh-logo-accent {
+    color: #c8a84b;
+}
+
+.dh-whatsapp {
+    color: #25d366 !important;
+}
+
+.dh-whatsapp:hover {
+    opacity: 1;
+    color: #1ebe5a !important;
+}
+
+.dh-logo-tag {
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.dh-icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dh-icon-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    /* for <a> tags */
+    line-height: 1;
+}
+
+.dh-icon-btn:hover {
+    opacity: 1;
+}
+
+.dh-dealer {
+    background: none;
+    border: none;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.65);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    padding: 6px 14px;
+    opacity: 0.85;
+    transition: all 0.2s;
+    background: rgba(200, 168, 75, 0.15);
+    border: 1.5px solid rgba(200, 168, 75, 0.7);
+    border-bottom: 1.5px solid rgba(200, 168, 75, 0.7);
+}
+
+.dh-dealer:hover {
+    opacity: 1;
+    background: #c8a84b;
+    border-color: #c8a84b;
+    color: #fff;
+}
+
+/* ── Primary Nav ── */
+.dh-primary {
+    width: 100%;
+    border-bottom: 1px solid rgb(187 187 187 / 19%);
+}
+.dh-primary-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dh-nav-list {
+    display: flex;
+    list-style: none;
+}
+
+.dh-nav-list li a {
+    display: block;
+    padding: 12px 17px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.dh-nav-list li a:hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
+.dh-nav-list li a.dh-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.10);
+    border-bottom-color: #fff;
+}
+
+.dh-search-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    padding: 12px 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.dh-search-btn:hover {
+    color: #fff;
+}
+
+/* ── Sub Nav ── */
+.dh-subnav {
+    width: 100%;
+    border-bottom: 1px solid rgb(187 187 187 / 19%);
+}
+
+.dh-subnav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.dh-subnav-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.dh-sub-link {
+    display: block;
+    padding: 9px 12px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.dh-sub-link:hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Hamburger ── */
+.dh-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+.dh-hamburger:hover {
+    opacity: 1;
+}
+
+.dh-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.dh-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.dh-hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.dh-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+/* Sticky Wrapper Desktop */
+/* .dh-sticky-wrapper.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(16px);
+    animation: slideDown .3s ease;
+} */
+.dh-header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(16px);
+    animation: slideDown .3s ease;
+}
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Sticky */
+@media (max-width: 991px) {
+
+    .dh-header.sticky .dh-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 99999;
+        background: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(16px);
+    }
+
+    .dh-mobile-menu {
+        display: block;
+        position: fixed;
+        top: 54px;
+        left: 0;
+        width: 100%;
+        z-index: 99998;
+        max-height: 0;
+        overflow-y: auto;
+        opacity: 0;
+        background: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(16px);
+        transition: max-height .3s ease, opacity .3s ease;
+    }
+
+    .dh-mobile-menu.open {
+        max-height: calc(100vh - 80px);
+        opacity: 1;
+    }
+
+    .dh-mobile-menu.sticky {
+        top: 54px;
+    }
+}
+
+/* Body spacing when sticky */
+body {
+    padding-top: 0;
+}
+
+/* .dh-header.sticky {
+    padding-top: 80px;
+} */
+/* ── Mobile Drawer ── */
+.dh-mobile-menu {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    background: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dh-mobile-menu.open {
+    max-height: 600px;
+    opacity: 1;
+}
+
+.dh-mobile-nav {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dh-mobile-nav a {
+    display: block;
+    padding: 13px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.dh-mobile-nav a:hover,
+.dh-mobile-nav a.dh-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border-left-color: #e8c97a;
+}
+
+.dh-mobile-sub {
+    padding: 8px 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.dh-mobile-sub a {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.dh-mobile-sub a:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.dh-mobile-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px 16px;
+}
+
+.dh-mobile-dealer {
+    background: none;
+    border: none;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    padding: 2px 0;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.dh-mobile-dealer:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.dh-mobile-search {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.2s;
+}
+
+.dh-mobile-search:hover {
+    color: #fff;
+}
+
+.dh-logo-img {
+    height: clamp(45px, 5vw, 90px);
+    width: auto;
+    /* padding: 8px 0; */
+}
+
+/* ════════════════════════════════════════════
+   TABLET  (≤ 1024px) — collapse some nav items
+════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .dh-nav-list li a {
+        padding: 12px 11px;
+        font-size: 11px;
+    }
+
+    .dh-sub-link {
+        padding: 9px 10px;
+        font-size: 11px;
+    }
+}
+
+/* ════════════════════════════════════════════
+   MOBILE  (≤ 768px) — hamburger menu
+════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    .dh-topbar-inner {
+        height: 58px;
+        padding: 0 16px;
+    }
+
+    .dh-logo-text {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    .dh-logo-tag {
+        font-size: 7px;
+        letter-spacing: 2.5px;
+    }
+
+    /* Hide desktop nav & subnav */
+    .dh-primary {
+        display: none;
+    }
+
+    .dh-subnav {
+        display: none;
+    }
+
+    /* Hide dealer btn from topbar on mobile */
+    .dh-dealer {
+        display: none;
+    }
+
+    /* Show hamburger */
+    .dh-hamburger {
+        display: flex;
+    }
+
+    /* Show mobile drawer */
+    .dh-mobile-menu {
+        display: block;
+    }
+
+    /* Reduce icon gap */
+    .dh-icons {
+        gap: 10px;
+    }
+}
+
+/* ════════════════════════════════════════════
+   SMALL MOBILE  (≤ 480px)
+════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .dh-topbar-inner {
+        height: 54px;
+        padding: 0 14px;
+    }
+
+    .dh-logo-text {
+        font-size: 17px;
+        letter-spacing: 2px;
+    }
+
+    .dh-logo-tag {
+        display: none;
+    }
+
+    .dh-icons {
+        gap: 8px;
+    }
+
+    .dh-icon-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .dh-badge {
+        width: 13px;
+        height: 13px;
+        font-size: 7px;
+    }
+}

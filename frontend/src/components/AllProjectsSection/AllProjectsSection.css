@@ -1,0 +1,152 @@
+.allproj-root {
+    padding: 80px 20px;
+    background: #0f0f0f;
+    color: #fff;
+}
+
+.allproj-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+.allproj-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.allproj-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #aaa;
+}
+
+.allproj-bar {
+    width: 40px;
+    height: 2px;
+    background: #c8a84b;
+}
+
+.allproj-heading {
+    font-size: 42px;
+    font-family: 'Teko', sans-serif;
+}
+
+.allproj-heading em {
+    color: #c8a84b;
+    font-style: normal;
+}
+
+.allproj-sub {
+    max-width: 400px;
+    color: #aaa;
+}
+
+.allproj-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 1px solid #c8a84b;
+    background: transparent;
+    color: #c8a84b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* GRID */
+.allproj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+.allproj-card {
+    background: #1a1a1a;
+    border: 1px solid #222;
+    transition: 0.3s;
+}
+
+.allproj-card:hover {
+    transform: translateY(-8px);
+    border-color: #c8a84b;
+}
+
+/* TOP */
+.allproj-top {
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    position: relative;
+}
+
+.allproj-num {
+    font-size: 50px;
+    color: rgba(200, 168, 75, 0.1);
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.allproj-pill {
+    font-size: 12px;
+    background: #c8a84b;
+    color: #000;
+    padding: 4px 10px;
+}
+
+.allproj-tag {
+    margin-left: 10px;
+    font-size: 11px;
+    border: 1px solid #c8a84b;
+    padding: 3px 8px;
+}
+
+/* BODY */
+.allproj-body {
+    padding: 20px;
+}
+
+.allproj-body h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.allproj-body p {
+    color: #bbb;
+    font-size: 14px;
+}
+
+.allproj-read {
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: #c8a84b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .allproj-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .allproj-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .allproj-heading {
+        font-size: 32px;
+    }
+}

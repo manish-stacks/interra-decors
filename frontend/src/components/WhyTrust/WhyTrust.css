@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ===========================
+   ROOT & BACKGROUND
+=========================== */
+.wt-root {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 80px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wt-bg-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wt-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(180, 150, 90, 0.07);
+}
+
+.wt-line-1 {
+  left: 20%;
+}
+
+.wt-line-2 {
+  left: 50%;
+}
+
+.wt-line-3 {
+  left: 80%;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.wt-container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  z-index: 1;
+}
+
+/* ===========================
+   EYEBROW & HEADING
+=========================== */
+.wt-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b89450;
+  margin-bottom: 18px;
+}
+
+.wt-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background: #b89450;
+  flex-shrink: 0;
+}
+
+.wt-eyebrow-center {
+  display: block;
+  text-align: center;
+}
+
+.wt-eyebrow-center::before {
+  display: none;
+}
+
+.wt-heading {
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(40px, 4vw, 70px);
+  font-weight: 400;
+  line-height: 0.95;
+  color: #1a1814;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.wt-heading em {
+  font-style: normal;
+  color: #b89450;
+}
+
+.wt-heading-center {
+  text-align: center;
+}
+
+/* ===========================
+   TOP SECTION — WHY CHOOSE US
+=========================== */
+.wt-top {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.wt-top-left {
+  position: sticky;
+  top: 40px;
+}
+
+.wt-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.75;
+  margin: 20px 0 28px;
+  max-width: 300px;
+}
+
+.wt-accent-bar {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #b89450, #e0c07a, transparent);
+  border-radius: 2px;
+}
+
+/* ===========================
+   REASONS — 3 columns x 2 rows
+=========================== */
+.wt-reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #ede8dc;
+  border: 1px solid #ede8dc;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.wt-reason {
+  background: #ffffff;
+  padding: 28px 24px;
+  cursor: default;
+  transition: background 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wt-reason.active {
+  background: #fdf9f2;
+}
+
+.wt-reason-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #f5f0e6;
+  border: 1px solid #ede8dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b89450;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s;
+}
+
+.wt-reason-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.wt-reason.active .wt-reason-icon {
+  background: #b89450;
+  border-color: #b89450;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.wt-reason-body {
+  flex: 1;
+}
+
+.wt-reason-title {
+  font-family: 'Teko', sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: #1a1814;
+  margin: 0 0 6px;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  transition: color 0.25s;
+}
+
+.wt-reason.active .wt-reason-title {
+  color: #b89450;
+}
+
+.wt-reason-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ===========================
+   DIVIDER
+=========================== */
+.wt-divider {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.wt-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0d5c0, transparent);
+}
+
+.wt-divider-badge {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b89450;
+  background: #fdf9f2;
+  border: 1px solid #e8dfc8;
+  padding: 8px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* ===========================
+   BOTTOM — TRUST SECTION
+=========================== */
+.wt-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wt-trust-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.wt-trust-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.75;
+  margin: 20px auto 0;
+  max-width: 500px;
+}
+
+/* ===========================
+   STATS ROW
+=========================== */
+.wt-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #ede8dc;
+  border: 1px solid #ede8dc;
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.wt-stat {
+  background: #fff;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wt-stat-value {
+  font-family: 'Teko', sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: #1a1814;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.wt-stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #b89450;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   CLIENT CARDS
+=========================== */
+.wt-clients {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.wt-client-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 14px;
+  background: #b89450;
+  border: 1px solid #ede8dc;
+  border-radius: 12px;
+  text-align: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  cursor: default;
+}
+
+.wt-client-card:hover {
+  background: #fff7eb;
+  border-color: #d4bc88;
+  transform: translateY(-3px);
+}
+
+.wt-client-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: color 0.25s;
+}
+
+.wt-client-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.wt-client-card:hover .wt-client-icon {
+  color: #8a6d30;
+}
+
+.wt-client-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.wt-client-card:hover .wt-client-label {
+  color: #000000;
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+}
+
+/* ===========================
+   TRUST NOTE
+=========================== */
+.wt-trust-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wt-trust-note-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b89450;
+  flex-shrink: 0;
+}
+
+.wt-trust-note p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #b89450;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  .wt-top {
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+  }
+
+  .wt-clients {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .wt-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .wt-reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wt-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .wt-top-left {
+    position: static;
+  }
+
+  .wt-container {
+    padding: 0 24px;
+  }
+
+  .wt-reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wt-clients {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .wt-reasons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wt-clients {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wt-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+

@@ -1,0 +1,603 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════
+   ROOT
+══════════════════════════════════════════ */
+.cs-root {
+  background: #faf8f5;
+  padding: 80px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-root::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 168, 75, 0.07) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.cs-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
+.cs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.cs-header-left {
+  flex: 1;
+}
+
+.cs-header-right {
+  flex-shrink: 0;
+}
+
+.cs-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cs-eyebrow-line {
+  width: 30px;
+  height: 2px;
+  background: #c8a84b;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.cs-eyebrow-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #c8a84b;
+  text-transform: uppercase;
+}
+
+.cs-heading {
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cs-heading span {
+  color: #c8a84b;
+}
+
+.cs-subtext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  margin-top: 8px;
+  letter-spacing: 0.2px;
+}
+
+/* Arrow buttons */
+.cs-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-arrow-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #e0d8cc;
+  background: #fff;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.cs-arrow-btn:hover:not(:disabled) {
+  background: #c8a84b;
+  border-color: #c8a84b;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(200, 168, 75, 0.35);
+  transform: scale(1.05);
+}
+
+.cs-arrow-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+/* ══════════════════════════════════════════
+   TRACK
+══════════════════════════════════════════ */
+.cs-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.cs-track:active {
+  cursor: grabbing;
+}
+
+.cs-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ══════════════════════════════════════════
+   CARD
+══════════════════════════════════════════ */
+.cs-card {
+  flex-shrink: 0;
+  width: clamp(155px, 16vw, 190px);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+}
+
+.cs-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.cs-card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+/* Image */
+.cs-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cs-card:hover .cs-card-img {
+  transform: scale(1.07);
+}
+
+/* Dark gradient overlay — strong at bottom for text */
+.cs-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.10) 35%,
+      rgba(0, 0, 0, 0.55) 65%,
+      rgba(0, 0, 0, 0.82) 100%);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+/* Number tag */
+.cs-card-num {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'Teko', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1px;
+  line-height: 1;
+  z-index: 3;
+  transition: color 0.25s;
+}
+
+.cs-card:hover .cs-card-num {
+  color: #e8c97a;
+}
+
+/* Content — title + desc + cta inside image at bottom */
+.cs-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 20px 16px 18px;
+}
+
+.cs-card-title {
+  font-family: 'Teko', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cs-card-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  /* Hidden by default, shown on hover */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+}
+
+.cs-card:hover .cs-card-desc {
+  max-height: 60px;
+  opacity: 1;
+}
+
+/* Explore CTA inside card */
+.cs-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e8c97a;
+  transition: gap 0.25s;
+}
+
+.cs-card:hover .cs-card-cta {
+  gap: 10px;
+}
+
+.cs-card-cta-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(200, 168, 75, 0.25);
+  border: 1px solid rgba(200, 168, 75, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s;
+  color: #e8c97a;
+}
+
+.cs-card:hover .cs-card-cta-icon {
+  background: #c8a84b;
+  color: #fff;
+  border-color: #c8a84b;
+}
+
+/* Gold border ring on hover */
+.cs-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.cs-card:hover::after {
+  border-color: rgba(200, 168, 75, 0.4);
+}
+
+/* ══════════════════════════════════════════
+   VIEW ALL CARD
+══════════════════════════════════════════ */
+.cs-card-viewall {
+  box-shadow: none;
+}
+
+.cs-card-viewall:hover {
+  box-shadow: 0 20px 50px rgba(200, 168, 75, 0.15);
+}
+
+.cs-viewall-inner {
+  background: linear-gradient(135deg, #f5f0e8 0%, #ede5d8 100%);
+  border: 2px dashed #d4c5a0;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.cs-card-viewall:hover .cs-viewall-inner {
+  border-color: #c8a84b;
+  background: linear-gradient(135deg, #faf5e8 0%, #f0e8d0 100%);
+}
+
+.cs-viewall-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background 0.25s, transform 0.3s;
+}
+
+.cs-card-viewall:hover .cs-viewall-icon {
+  background: #c8a84b;
+  transform: scale(1.1);
+}
+
+.cs-viewall-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #666;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+  transition: color 0.25s;
+}
+
+.cs-card-viewall:hover .cs-viewall-label {
+  color: #c8a84b;
+}
+
+/* ══════════════════════════════════════════
+   BOTTOM ROW
+══════════════════════════════════════════ */
+.cs-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cs-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cs-dot {
+  height: 4px;
+  width: 6px;
+  border-radius: 4px;
+  background: #ddd;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.cs-dot.on {
+  background: #c8a84b;
+  width: 24px;
+}
+
+.cs-view-all-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.cs-view-all-btn:hover {
+  color: #c8a84b;
+}
+
+.cs-view-all-btn:hover .cs-btn-arrow {
+  background: #c8a84b;
+  transform: translateX(3px);
+}
+
+.cs-btn-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.25s;
+}
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes cs-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cs-fade {
+  animation: cs-fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.cs-fade-1 {
+  animation-delay: 0.05s;
+}
+
+.cs-fade-2 {
+  animation-delay: 0.15s;
+}
+
+.cs-fade-3 {
+  animation-delay: 0.25s;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .cs-root {
+    padding: 64px 0 72px;
+  }
+
+  .cs-card {
+    width: clamp(148px, 20vw, 178px);
+  }
+
+  .cs-card-title {
+    font-size: 18px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .cs-root {
+    padding: 52px 0 60px;
+  }
+
+  .cs-container {
+    padding: 0 16px;
+  }
+
+  .cs-header {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .cs-heading {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  .cs-subtext {
+    font-size: 11.5px;
+    margin-top: 6px;
+  }
+
+  .cs-track {
+    gap: 12px;
+  }
+
+  .cs-card {
+    width: clamp(138px, 38vw, 168px);
+  }
+
+  .cs-card-title {
+    font-size: 16px;
+  }
+
+  .cs-card-desc {
+    display: none;
+  }
+
+  /* clean on small screens */
+
+  .cs-card-content {
+    padding: 14px 12px 14px;
+  }
+
+  .cs-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤ 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .cs-root {
+    padding: 40px 0 48px;
+  }
+
+  .cs-container {
+    padding: 0 14px;
+  }
+
+  .cs-arrows {
+    display: none;
+  }
+
+  /* swipe on touch */
+
+  .cs-card {
+    width: clamp(130px, 40vw, 155px);
+  }
+
+  .cs-card-title {
+    font-size: 15px;
+  }
+
+  .cs-card-cta {
+    display: none;
+  }
+
+  .cs-eyebrow-text {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .cs-heading {
+    font-size: clamp(24px, 9vw, 34px);
+  }
+
+  .cs-view-all-btn {
+    font-size: 10px;
+  }
+}

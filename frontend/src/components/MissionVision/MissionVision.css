@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Teko:wght@300;400;500&display=swap');
+
+:root {
+  /* Color Palette matching the architectural render exactly */
+  --color-ebony: #191919;
+  --color-alabaster: #f2f0ec;
+  --color-stark-white: #ffffff;
+  --color-matrix-bg: #f5f4f0;
+  --color-gold: #b39268;
+  --color-text-dark: #1a1a1a;
+  --color-text-muted: #333;
+  --color-text-light-muted: #a3a3a3;
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  /* Typography Systems */
+  --font-display: 'Teko', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-stark-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- OVERALL CANVAS CONTAINER --- */
+.spatial-showroom {
+  max-width: 1280px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+}
+
+/* --- TOP HALF: ARCHITECTURAL WALL COLUMNS --- */
+.column-split-canvas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 55vh;
+  position: relative;
+}
+
+.studio-col {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 10% 60px;
+  overflow: hidden;
+}
+
+/* Native CSS Texture Generation for Concrete & Plaster Walls */
+.texture-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Left Dark Wall Styling */
+.dark-monolith {
+  background-color: var(--color-ebony);
+  /* Depth gradient simulating physical architectural corner shading */
+  background-image: radial-gradient(circle at 0% 100%, rgba(40,40,40,0.45) 0%, transparent 70%);
+  color: var(--color-stark-white);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Right Light Wall Styling */
+.light-alabaster {
+  background-color: var(--color-alabaster);
+  background-image: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.6) 0%, transparent 60%);
+  color: var(--color-text-dark);
+}
+
+.col-content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.meta-tag {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.dark-monolith .meta-tag { color: var(--color-text-light-muted); }
+.light-alabaster .meta-tag { color: var(--color-text-muted); }
+
+.display-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  margin-bottom: 30px;
+  color: var(--color-gold);
+}
+
+.manifesto-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  margin-bottom: 50px;
+}
+
+.dark-monolith .manifesto-text { color: #e5e5e5; }
+.light-alabaster .manifesto-text { color: #111; }
+
+.font-signature {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dark-monolith .font-signature { color: rgba(255,255,255,0.25); }
+.light-alabaster .font-signature { color: rgba(0,0,0,0.25); }
+
+
+/* --- BOTTOM HALF: BLUEPRINT DATA MATRIX --- */
+.matrix-blueprint-wrapper {
+  background-color: var(--color-matrix-bg);
+  padding: 50px 0 50px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.matrix-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.matrix-thumb {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.matrix-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.matrix-cell:hover .matrix-thumb img {
+  transform: scale(1.05);
+}
+
+/* Large screens */
+@media (max-width: 1400px) {
+  .matrix-thumb {
+    height: 160px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  .matrix-thumb {
+    height: 220px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .matrix-thumb {
+    height: 152px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  /* .matrix-thumb {
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  } */
+
+  .matrix-cell:hover .matrix-thumb img {
+    transform: none; /* disable zoom on touch devices */
+  }
+}
+.matrix-header {
+  margin-bottom: 35px;
+}
+
+.matrix-header h3 {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Linear Technical Layout System */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-border);
+}
+
+.matrix-cell {
+  position: relative;
+  padding: 30px 40px 40px 0;
+  border-right: 1px solid var(--color-border);
+}
+
+/* Remove end boundary border line to maintain lookbook elegance */
+.matrix-cell:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+/* Indent alignment offset */
+.matrix-cell:not(:first-child) {
+  padding-left: 40px;
+}
+
+.pillar-title {
+    /* font-family: var(--font-sans); */
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+}
+.cell-body {
+  position: relative;
+}
+
+.cell-num {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+}
+
+.cell-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 12px;
+}
+
+.cell-desc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 280px;
+}
+
+/* Decorative vector star container */
+.accent-star-vector {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.04);
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 1100px) {
+  .matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .matrix-cell {
+    border-bottom: 1px solid var(--color-border);
+    padding: 40px !important;
+  }
+  .matrix-cell:nth-child(2n) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .column-split-canvas {
+    grid-template-columns: 1fr;
+  }
+  .studio-col {
+    padding: 80px 30px;
+    min-height: 50vh;
+  }
+  .matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+  }
+  .matrix-cell {
+    border-right: none !important;
+    padding: 40px 0 !important;
+  }
+  .display-title {
+    font-size: 38px;
+  }
+  .manifesto-text {
+    font-size: 14px;
+  }
+}
