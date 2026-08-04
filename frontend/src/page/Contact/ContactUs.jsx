@@ -35,9 +35,11 @@ const Contact = () => {
   };
 
   const submit = async (e) => {
+    // ── 1. PREVENT DEFAULT EARLY ──
     e.preventDefault();
+    e.stopPropagation(); // extra safety
 
-    // Validate required fields
+    // ── 2. VALIDATE ──
     if (!form.name || !form.email || !form.message) {
       setToast({
         show: true,
@@ -52,10 +54,22 @@ const Contact = () => {
     setToast({ show: false, message: "", type: "" });
 
     try {
+      // ── 3. CHECK API_URL ──
+      if (!API_URL) {
+        throw new Error("API_URL is not defined. Check your constant/Url.js");
+      }
+
       const response = await fetch(`${API_URL}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          formType: "contact",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        }),
       });
 
       const data = await response.json();
@@ -66,25 +80,25 @@ const Contact = () => {
           message: "✅ Message sent! We'll get back to you soon.",
           type: "success",
         });
-        // Reset form
         setForm({ name: "", email: "", phone: "", service: "", message: "" });
       } else {
         setToast({
           show: true,
-          message: `❌ ${data.error || "Something went wrong."}`,
+          message: `❌ ${data.error || "Server error. Please try again."}`,
           type: "error",
         });
       }
     } catch (error) {
-      console.error("Network error:", error);
+      console.error("Submit error:", error);
       setToast({
         show: true,
-        message: "❌ Network error. Please check your connection.",
+        message: `❌ ${error.message || "Network error. Please check your connection."}`,
         type: "error",
       });
     } finally {
       setLoading(false);
-      setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+      // reset toast after 5 seconds
+      setTimeout(() => setToast({ show: false, message: "", type: "" }), 5000);
     }
   };
 
@@ -148,8 +162,8 @@ const Contact = () => {
                   <div className="cp-detail-text">
                     <label>Address</label>
                     <span>
-                      Shop No. 129, 1st Floor, Jmd Suburbio 67, Badshahpur
-                      Sohna Rd, Sector 67, Gurugram, Haryana 122101
+                      Shop No. 129, 1st Floor, Jmd Suburbio 67, Badshahpur Sohna
+                      Rd, Sector 67, Gurugram, Haryana 122101
                     </span>
                   </div>
                 </div>

@@ -172,3 +172,117 @@
 .bm-field select option[value=""] {
     color: #9b948c;
 }
+/* Simple spinner animation */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optional: change button appearance while loading */
+.bm-btn.loading {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+
+/* ── Toast Notification ── */
+.bm-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 460px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-left: 5px solid #6A593C;
+  animation: slideUp 0.3s ease;
+}
+
+.bm-toast-success {
+  border-left-color: #6A593C;
+  background: #f0fdfa;
+}
+
+.bm-toast-error {
+  border-left-color: #e74c3c;
+  background: #fef2f2;
+}
+
+.bm-toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.bm-toast-icon {
+  font-size: 1.2rem;
+}
+
+.bm-toast-message {
+  color: #1e293b;
+}
+
+.bm-toast-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.bm-toast-close:hover {
+  color: #475569;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Spinner (already used) */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

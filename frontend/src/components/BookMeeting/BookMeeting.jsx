@@ -6,14 +6,13 @@ import {
   User,
   Mail,
   Phone,
-  MessageSquare,
 } from "lucide-react";
 
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./BookMeeting.css";
+import { API_URL } from "../../constant/Url";
 
 const BookMeeting = () => {
-  /* FORM STATE */
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -22,10 +21,12 @@ const BookMeeting = () => {
     message: "",
   });
 
-  /* SUCCESS STATE */
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  /* HANDLE INPUT */
+  // ─── Toast state ──────────────────────────────────────────────
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
+
   const handle = (e) => {
     setForm({
       ...form,
@@ -33,11 +34,58 @@ const BookMeeting = () => {
     });
   };
 
-  /* SUBMIT */
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
 
-    setSent(true);
+    if (loading) return;
+
+    setLoading(true);
+    setSent(false);
+
+    try {
+      const response = await fetch(`${API_URL}/api/send-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formType: "book_meeting",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          purpose: form.purpose,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setSent(true);
+        // ── Show success toast ──
+        setToast({
+          show: true,
+          message: "✅ Meeting booked successfully! We'll contact you shortly.",
+          type: "success",
+        });
+        setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+        // Optionally reset form
+        // setForm({ name: "", email: "", phone: "", purpose: "", message: "" });
+      } else {
+        setToast({
+          show: true,
+          message: `❌ ${data.error || "Submission failed. Please try again."}`,
+          type: "error",
+        });
+        setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+      }
+    } catch (error) {
+      console.error(error);
+      setToast({
+        show: true,
+        message: "❌ Network error. Please check your connection.",
+        type: "error",
+      });
+      setTimeout(() => setToast({ show: false, message: "", type: "" }), 4000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,13 +94,11 @@ const BookMeeting = () => {
 
       <div className="bm-page">
         <div className="bm-container">
-          {/* HEADER */}
           <div className="bm-header">
             <h1>Book a Meeting</h1>
             <p>Schedule a consultation with our interior experts</p>
           </div>
 
-          {/* FORM CARD */}
           <div className="bm-form-card">
             <form onSubmit={submit}>
               <div className="bm-grid">
@@ -69,8 +115,10 @@ const BookMeeting = () => {
                     onChange={handle}
                     placeholder="Enter your full name"
                     required
+                    disabled={loading}
                   />
                 </div>
+
                 {/* EMAIL */}
                 <div className="bm-field">
                   <label>
@@ -84,15 +132,16 @@ const BookMeeting = () => {
                     onChange={handle}
                     placeholder="you@example.com"
                     required
+                    disabled={loading}
                   />
                 </div>
+
                 {/* PHONE */}
                 <div className="bm-field">
                   <label>
                     <Phone size={14} />
                     Phone Number
                   </label>
-
                   <input
                     type="text"
                     name="phone"
@@ -100,6 +149,7 @@ const BookMeeting = () => {
                     onChange={handle}
                     placeholder="+91 XXXXX XXXXX"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -109,65 +159,39 @@ const BookMeeting = () => {
                     <CalendarDays size={14} />
                     Meeting Purpose
                   </label>
-
                   <select
                     name="purpose"
                     value={form.purpose}
                     onChange={handle}
                     required
                     defaultValue=""
+                    disabled={loading}
                   >
                     <option value="">-- Select Meeting Purpose --</option>
-
-                    <option value="consultation">
-                      Interior Design Consultation
-                    </option>
-
-                    <option value="residential">
-                      Residential Project Discussion
-                    </option>
-
-                    <option value="commercial">
-                      Commercial Space Planning
-                    </option>
-
-                    <option value="furniture">
-                      Furniture & Decor Selection
-                    </option>
-
-                    <option value="custom">Custom Design Requirement</option>
-
-                    <option value="renovation">Home Renovation Planning</option>
-
-                    <option value="luxury">Luxury Interior Consultation</option>
-
-                    <option value="quotation">
-                      Pricing & Quotation Discussion
-                    </option>
-
-                    <option value="other">Other</option>
+                    <option value="Interior Design Consultation">Interior Design Consultation</option>
+                    <option value="Residential Project Discussion">Residential Project Discussion</option>
+                    <option value="Commercial Space Planning">Commercial Space Planning</option>
+                    <option value="Furniture & Decor Selection">Furniture & Decor Selection</option>
+                    <option value="Custom Design Requirement">Custom Design Requirement</option>
+                    <option value="Home Renovation Planning">Home Renovation Planning</option>
+                    <option value="Luxury Interior Consultation">Luxury Interior Consultation</option>
+                    <option value="Pricing & Quotation Discussion">Pricing & Quotation Discussion</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
-
-                {/* MESSAGE */}
-                {/* <div className="bm-field full">
-                  <label>
-                    <MessageSquare size={14} />
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="5"
-                    value={form.message}
-                    onChange={handle}
-                    placeholder="Describe your requirement..."
-                  />
-                </div> */}
               </div>
 
-              {/* BUTTON */}
-              <button type="submit" className={`bm-btn ${sent ? "sent" : ""}`}>
-                {sent ? (
+              {/* ── BUTTON ── */}
+              <button
+                type="submit"
+                className={`bm-btn ${sent ? "sent" : ""} ${loading ? "loading" : ""}`}
+                disabled={loading || sent}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner" /> Submitting…
+                  </>
+                ) : sent ? (
                   <>
                     <CheckCircle size={16} />
                     Meeting Booked
@@ -183,6 +207,24 @@ const BookMeeting = () => {
           </div>
         </div>
       </div>
+
+      {/* ── TOAST NOTIFICATION ── */}
+      {toast.show && (
+        <div className={`bm-toast ${toast.type === "success" ? "bm-toast-success" : "bm-toast-error"}`}>
+          <div className="bm-toast-content">
+            <span className="bm-toast-icon">
+              {toast.type === "success" ? "✅" : "❌"}
+            </span>
+            <span className="bm-toast-message">{toast.message}</span>
+          </div>
+          <button
+            className="bm-toast-close"
+            onClick={() => setToast({ show: false, message: "", type: "" })}
+          >
+            ×
+          </button>
+        </div>
+      )}
     </>
   );
 };

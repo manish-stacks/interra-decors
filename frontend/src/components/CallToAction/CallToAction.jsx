@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./CallToAction.css";
 import ctaGirl from "../../assets/cta-girl.png";
+import { API_URL } from "../../constant/Url";
+
 export default function CallToAction() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // <── new loading state
 
   const [modalType, setModalType] = useState("meeting");
 
@@ -11,21 +14,36 @@ export default function CallToAction() {
     modalType === "meeting"
       ? [
           { value: "", label: "Select Purpose of Meeting" },
-          { value: "residential", label: "Residential Furnishing" },
-          { value: "commercial", label: "Commercial / Office Setup" },
-          { value: "hotel", label: "Hotel & Resort Project" },
-          { value: "interior", label: "Interior Design Consultation" },
-          { value: "bulk", label: "Bulk / Builder Project" },
-          { value: "other", label: "Other" },
+          { value: "Residential Furnishing", label: "Residential Furnishing" },
+          {
+            value: "Commercial / Office Setup",
+            label: "Commercial / Office Setup",
+          },
+          { value: "Hotel & Resort Project", label: "Hotel & Resort Project" },
+          {
+            value: "Interior Design Consultation",
+            label: "Interior Design Consultation",
+          },
+          { value: "Bulk / Builder Project", label: "Bulk / Builder Project" },
+          { value: "Other", label: "Other" },
         ]
       : [
           { value: "", label: "Select Catalogue Type" },
-          { value: "furniture", label: "Furniture Catalogue" },
-          { value: "decor", label: "Home Decor Catalogue" },
-          { value: "fabric", label: "Fabric & Furnishing Catalogue" },
-          { value: "luxury", label: "Luxury Interior Collection" },
-          { value: "complete", label: "Complete Product Catalogue" },
-          { value: "other", label: "Other" },
+          { value: "Furniture Catalogue", label: "Furniture Catalogue" },
+          { value: "Home Decor Catalogue", label: "Home Decor Catalogue" },
+          {
+            value: "Fabric & Furnishing Catalogue",
+            label: "Fabric & Furnishing Catalogue",
+          },
+          {
+            value: "Luxury Interior Collection",
+            label: "Luxury Interior Collection",
+          },
+          {
+            value: "Complete Product Catalogue",
+            label: "Complete Product Catalogue",
+          },
+          { value: "Other", label: "Other" },
         ];
 
   const [form, setForm] = useState({
@@ -41,11 +59,13 @@ export default function CallToAction() {
     setModalOpen(true);
     setSubmitted(false);
     setErrors({});
+    setIsSubmitting(false); // reset
   };
   const closeModal = () => {
     setModalOpen(false);
     setSubmitted(false);
     setForm({ name: "", phone: "", email: "", purpose: "" });
+    setIsSubmitting(false);
   };
 
   const validate = () => {
@@ -60,13 +80,46 @@ export default function CallToAction() {
     return e;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const e = validate();
     if (Object.keys(e).length) {
       setErrors(e);
       return;
     }
-    setSubmitted(true);
+
+    setIsSubmitting(true); // ── start loading ──
+
+    const formTypeMap = {
+      meeting: "cta_meeting",
+      catalogue: "cta_catalogue",
+    };
+    const formType = formTypeMap[modalType];
+
+    try {
+      const response = await fetch(`${API_URL}/api/send-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formType,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          purpose: form.purpose,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert(data.error || "Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false); // ── stop loading ──
+    }
   };
 
   const handleChange = (field, value) => {
@@ -77,6 +130,7 @@ export default function CallToAction() {
   return (
     <>
       <section className="cta-root">
+        {/* ... existing CTA UI ... */}
         <div className="cta-geo" aria-hidden="true">
           <div className="cta-geo-circle cta-geo-c1" />
           <div className="cta-geo-circle cta-geo-c2" />
@@ -85,7 +139,6 @@ export default function CallToAction() {
         </div>
 
         <div className="cta-container">
-          {/* ── LEFT ── */}
           <div className="cta-left">
             <span className="cta-eyebrow">
               <span className="cta-eyebrow-dot" />
@@ -95,15 +148,12 @@ export default function CallToAction() {
             <h2 className="cta-heading">
               Discover Tailor-Made <em>Furnishing Solutions</em>
             </h2>
-
             <p className="cta-sub">
               Transform your interiors with premium curtains, blinds,
               wallpapers, and custom décor crafted to bring elegance and comfort
               to every space.
             </p>
-
             <div className="cta-buttons">
-              {/* BOOK A MEETING */}
               <button
                 className="cta-btn cta-btn-primary"
                 onClick={() => openModal("meeting")}
@@ -158,8 +208,6 @@ export default function CallToAction() {
                 </span>
                 Book a Meeting
               </button>
-
-              {/* REQUEST CATALOGUE */}
               <button
                 className="cta-btn cta-btn-secondary"
                 onClick={() => openModal("catalogue")}
@@ -209,135 +257,19 @@ export default function CallToAction() {
               </button>
             </div>
           </div>
-
-          {/* ── RIGHT: animated border contact card ── */}
           <div className="cta-right">
             <img src={ctaGirl} alt="CTA Girl" />
-            {/* <div className="cta-card-wrap">
-              <svg
-                className="cta-border-svg"
-                viewBox="0 0 420 280"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="1"
-                  y="1"
-                  width="418"
-                  height="278"
-                  rx="15"
-                  stroke="url(#borderGrad)"
-                  strokeWidth="1.5"
-                  strokeDasharray="1200"
-                  strokeDashoffset="1200"
-                  className="cta-border-rect"
-                />
-                <defs>
-                  <linearGradient id="borderGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="transparent" />
-                    <stop offset="30%" stopColor="#c29e64" />
-                    <stop offset="60%" stopColor="#f0d090" />
-                    <stop offset="100%" stopColor="transparent" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <div className="cta-card">
-                <div className="cta-card-label">Reach Us Directly</div>
-
-                <div className="cta-contact-items">
-                  <div className="cta-contact-item">
-                    <div className="cta-contact-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="cta-contact-body">
-                      <span className="cta-contact-label">Call Us</span>
-                      <span className="cta-contact-value"> <a href="tel:+919953493794">+91 9953493794</a></span>
-                    </div>
-                  </div>
-
-                  <div className="cta-contact-item">
-                    <div className="cta-contact-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <rect
-                          x="2"
-                          y="4"
-                          width="20"
-                          height="16"
-                          rx="3"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <path
-                          d="M2 8l10 7 10-7"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="cta-contact-body">
-                      <span className="cta-contact-label">Email Us</span>
-                      <span className="cta-contact-value">
-                       <a href="mailto:info@interradecors.com">info@interradecors.com</a> 
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="cta-contact-item">
-                    <div className="cta-contact-icon">
-                      <svg viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                        <circle
-                          cx="12"
-                          cy="9"
-                          r="2.5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                    </div>
-                    <div className="cta-contact-body">
-                      <span className="cta-contact-label">Visit Us</span>
-                      <span className="cta-contact-value">
-                        Shop No. 129, 1st Floor, Jmd Suburbio, 67, Badshahpur Sohna Rd, Sector 67, Gurugram, Haryana 122101
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="cta-card-footer">
-                  <span className="cta-card-footer-dot" />
-                  <span>Creating Luxury Interiors with Modern Elegance</span>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          BOOKING MODAL
-      ══════════════════════════════ */}
+      {/* ═══════════════ MODAL ═══════════════ */}
       {modalOpen && (
         <div
           className="modal-backdrop"
           onClick={(e) => e.target === e.currentTarget && closeModal()}
         >
           <div className={`modal-box${submitted ? " modal-box--success" : ""}`}>
-            {/* Close */}
             <button
               className="modal-close"
               onClick={closeModal}
@@ -367,7 +299,6 @@ export default function CallToAction() {
 
             {!submitted ? (
               <>
-                {/* Modal Header */}
                 <div className="modal-header">
                   <div className="modal-icon-wrap">
                     <svg viewBox="0 0 28 28" fill="none">
@@ -422,7 +353,7 @@ export default function CallToAction() {
                       {modalType === "meeting"
                         ? "Book a Meeting"
                         : "Request Catalogue"}
-                    </h3>{" "}
+                    </h3>
                     <p className="modal-subtitle">
                       {modalType === "meeting"
                         ? "Our expert will get back to you within 24 hours"
@@ -431,7 +362,6 @@ export default function CallToAction() {
                   </div>
                 </div>
 
-                {/* Form */}
                 <div className="modal-form">
                   {/* Name */}
                   <div
@@ -462,6 +392,7 @@ export default function CallToAction() {
                         placeholder="Enter your full name"
                         value={form.name}
                         onChange={(e) => handleChange("name", e.target.value)}
+                        disabled={isSubmitting}
                       />
                     </div>
                     {errors.name && (
@@ -492,6 +423,7 @@ export default function CallToAction() {
                         placeholder="+91 98765 43210"
                         value={form.phone}
                         onChange={(e) => handleChange("phone", e.target.value)}
+                        disabled={isSubmitting}
                       />
                     </div>
                     {errors.phone && (
@@ -530,6 +462,7 @@ export default function CallToAction() {
                         placeholder="you@example.com"
                         value={form.email}
                         onChange={(e) => handleChange("email", e.target.value)}
+                        disabled={isSubmitting}
                       />
                     </div>
                     {errors.email && (
@@ -545,7 +478,7 @@ export default function CallToAction() {
                       {modalType === "meeting"
                         ? "Purpose of Meeting"
                         : "Catalogue Requirement"}
-                    </label>{" "}
+                    </label>
                     <div className="modal-input-wrap modal-select-wrap">
                       <span className="modal-input-icon">
                         <svg viewBox="0 0 20 20" fill="none">
@@ -563,6 +496,7 @@ export default function CallToAction() {
                         onChange={(e) =>
                           handleChange("purpose", e.target.value)
                         }
+                        disabled={isSubmitting}
                       >
                         {purposeOptions.map((o) => (
                           <option
@@ -592,21 +526,32 @@ export default function CallToAction() {
                   </div>
                 </div>
 
-                {/* Submit */}
-                <button className="modal-submit" onClick={handleSubmit}>
-                  {modalType === "meeting"
-                    ? "Confirm Booking"
-                    : "Request Catalogue"}
-
-                  <svg viewBox="0 0 20 20" fill="none">
-                    <path
-                      d="M4 10h12M11 5l5 5-5 5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                {/* ── SUBMIT BUTTON with loading state ── */}
+                <button
+                  className="modal-submit"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner" /> Submitting…
+                    </>
+                  ) : modalType === "meeting" ? (
+                    "Confirm Booking"
+                  ) : (
+                    "Request Catalogue"
+                  )}
+                  {!isSubmitting && (
+                    <svg viewBox="0 0 20 20" fill="none">
+                      <path
+                        d="M4 10h12M11 5l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
                 </button>
 
                 <p className="modal-privacy">
@@ -638,7 +583,7 @@ export default function CallToAction() {
                   {modalType === "meeting"
                     ? "Booking Confirmed!"
                     : "Catalogue Requested!"}
-                </h3>{" "}
+                </h3>
                 <p className="modal-success-msg">
                   Thank you, <strong>{form.name}</strong>!<br />
                   Our team will reach you at <strong>{form.phone}</strong>{" "}
